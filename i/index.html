@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lak. · Automatisation IA pour l'Immobilier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #f15a24;
+    --orange-light: #ff7a45;
+    --orange-glow: rgba(241, 90, 36, 0.15);
+    --orange-glow-strong: rgba(241, 90, 36, 0.25);
+    --white: #ffffff;
+    --off-white: #fafaf8;
+    --gray-100: #f4f3f0;
+    --gray-200: #e8e6e1;
+    --gray-300: #d0cdc6;
+    --gray-500: #9b9690;
+    --gray-700: #4a4740;
+    --gray-900: #1a1916;
+    --text: #1a1916;
+    --text-muted: #6b6860;
+    --radius: 12px;
+    --radius-lg: 20px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 48px;
+  }
+
+  .section-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(22px, 3vw, 32px);
+    font-weight: 800;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+    line-height: 1.25;
+  }
+
+  .section-intro {
+    color: var(--text-muted);
+    font-size: 16px;
+    max-width: 600px;
+    margin-bottom: 48px;
+  }
+
+  /* ── ACCORDION ── */
+  .accordion-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .accordion-item {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .accordion-item:hover {
+    border-color: var(--gray-300);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+
+  .accordion-item.open {
+    border-color: rgba(241,90,36,0.25);
+    box-shadow: 0 4px 24px rgba(241,90,36,0.08);
+  }
+
+  .accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    cursor: pointer;
+    user-select: none;
+    gap: 16px;
+  }
+
+  .accordion-header-left { display: flex; align-items: center; gap: 14px; }
+
+  .accordion-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--orange);
+    background: var(--orange-glow);
+    border-radius: 6px;
+    padding: 4px 8px;
+    letter-spacing: 0.06em;
+    min-width: 36px;
+    text-align: center;
+  }
+
+  .accordion-meta { display: flex; flex-direction: column; gap: 2px; }
+
+  .accordion-tag {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--orange);
+    opacity: 0.7;
+  }
+
+  .accordion-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gray-900);
+  }
+
+  .accordion-desc { font-size: 13px; color: var(--text-muted); font-weight: 300; }
+
+  .accordion-toggle {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--gray-100);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s ease, transform 0.3s ease;
+    color: var(--gray-700);
+  }
+
+  .accordion-item.open .accordion-toggle {
+    background: var(--orange);
+    color: white;
+    transform: rotate(180deg);
+  }
+
+  .accordion-body { display: none; padding: 0 24px 28px; }
+  .accordion-item.open > .accordion-body { display: block; animation: fadeIn 0.2s ease; }
+  .sub-accordion .accordion-body { display: none; padding: 0 16px 20px; }
+  .sub-accordion.open > .accordion-body { display: block; animation: fadeIn 0.2s ease; }
+
+  /* ── CONTENT BLOCKS ── */
+  .content-block { margin-bottom: 28px; }
+  .content-block:last-child { margin-bottom: 0; }
+
+  .block-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .block-text { font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+
+  .callout {
+    background: var(--gray-100);
+    border-left: 3px solid var(--orange);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+    margin-top: 14px;
+    font-size: 14px;
+    color: var(--gray-700);
+    line-height: 1.6;
+  }
+
+  .callout strong { color: var(--gray-900); }
+
+  /* Steps */
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .step-card {
+    background: var(--gray-100);
+    border-radius: 10px;
+    padding: 16px;
+    position: relative;
+  }
+
+  .step-num { font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; color: var(--orange); letter-spacing: 0.08em; margin-bottom: 6px; }
+  .step-emoji { font-size: 20px; margin-bottom: 8px; display: block; }
+  .step-title { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: var(--gray-900); margin-bottom: 4px; }
+  .step-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+  .step-arrow { position: absolute; right: -6px; top: 50%; transform: translateY(-50%); color: var(--orange); font-size: 14px; z-index: 1; }
+
+  /* Stats */
+  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-top: 4px; }
+
+  .stat-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .stat-icon { font-size: 22px; margin-bottom: 6px; }
+  .stat-value { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 800; color: var(--orange); margin-bottom: 2px; }
+  .stat-label { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+
+  /* Infos pratiques */
+  .infos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-top: 4px; }
+
+  .info-card { background: var(--gray-100); border-radius: 8px; padding: 12px 14px; }
+  .info-key { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 4px; }
+  .info-val { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: var(--gray-900); }
+
+  /* Portails */
+  .portails-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .portail-tag { background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 20px; padding: 5px 12px; font-size: 13px; color: var(--gray-700); }
+
+  /* CTA */
+  .cta-section {
+    background: var(--gray-100);
+    position: relative;
+    overflow: hidden;
+    padding: 80px 48px;
+    text-align: center;
+    width: 100%;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-200);
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(circle, var(--orange-glow) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-inner { max-width: 100%; margin: 0 auto; position: relative; }
+
+  .cta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--orange-glow);
+    border: 1px solid rgba(241,90,36,0.25);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--orange);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 auto 24px;
+  }
+
+  .cta-section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(26px, 4vw, 42px);
+    font-weight: 800;
+    color: var(--gray-900);
+    margin-bottom: 16px;
+    line-height: 1.15;
+  }
+
+  .cta-section h2 em { font-style: normal; color: var(--orange); }
+
+  .cta-desc { color: var(--text-muted); font-size: 16px; margin-bottom: 40px; font-weight: 300; }
+
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--orange);
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 16px 32px;
+    border-radius: 100px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 8px 24px rgba(241,90,36,0.35);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 480px) {
+    .cta-btn {
+      white-space: normal;
+      text-align: center;
+      padding: 18px 24px;
+      font-size: 15px;
+      width: 100%;
+      max-width: 320px;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+    .cta-section {
+      padding: 56px 20px;
+      border-radius: var(--radius-lg);
+    }
+    .cta-inner {
+      width: 100%;
+    }
+    #cta-wrapper {
+      padding: 0 16px 32px !important;
+    }
+  }
+
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(241,90,36,0.45); }
+  .cta-note { margin-top: 16px; font-size: 13px; color: var(--gray-500); }
+
+  /* ── DIVIDER ── */
+  .section-divider { height: 1px; background: var(--gray-200); max-width: 1100px; margin: 0 auto; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .step-arrow { display: none; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .avant-apres-grid { grid-template-columns: 1fr !important; }
+    .section { padding: 48px 16px !important; }
+    .accordion-header { padding: 16px; }
+    .accordion-body { padding: 0 16px 24px; }
+    .accordion-num { min-width: 30px; font-size: 10px; }
+    .accordion-title { font-size: 15px; }
+    .accordion-desc { font-size: 12px; }
+    #intro > div { padding: 40px 16px !important; }
+    #intro > div > div[style*="max-width: 740px"],
+    #intro > div > p,
+    #intro > div > div { max-width: 100% !important; }
+    #hero-title { padding: 36px 16px !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     NAVBAR
+     ══════════════════════════════════════════ -->
+<div style="background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 18px 48px; display: flex; align-items: center; justify-content: space-between;">
+  <div style="font-family: 'Montserrat', sans-serif; font-size: 18px; font-weight: 800; color: var(--gray-900); letter-spacing: -0.02em;">Lak<span style="color: var(--orange);">.</span></div>
+  <div style="display: flex; align-items: center; gap: 6px; background: rgba(241,90,36,0.08); border: 1px solid rgba(241,90,36,0.2); border-radius: 100px; padding: 4px 12px;">
+    <span style="width: 5px; height: 5px; background: var(--orange); border-radius: 50%; display: inline-block;"></span>
+    <span style="font-family: 'Montserrat', sans-serif; font-size: 10px; font-weight: 700; color: var(--orange); letter-spacing: 0.08em; text-transform: uppercase;">Confidentiel</span>
+  </div>
+</div>
+
+<!-- BANDEAU HAUT DE PAGE -->
+<div style="background: var(--gray-100); border-bottom: 1px solid var(--gray-200); padding: 10px 20px; text-align: center;">
+  <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">💻 Meilleure expérience sur ordinateur.</p>
+</div>
+
+<!-- ══════════════════════════════════════════
+     HERO TITLE
+     ══════════════════════════════════════════ -->
+<div id="hero-title" style="background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 52px 48px 56px;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div style="display: flex; align-items: flex-start; gap: 48px;">
+      <div style="flex: 1;">
+        <!-- MODIFIER: Surtitre -->
+        <div style="font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 16px;">Automatisation IA · Immobilier</div>
+        <!-- MODIFIER: Titre principal -->
+        <h1 style="font-family: 'Montserrat', sans-serif; font-size: clamp(24px, 3vw, 42px); font-weight: 800; color: var(--gray-900); line-height: 1.15; margin-bottom: 16px;">Ce que l'IA peut faire dans <span style="color: var(--orange);">votre agence.</span></h1>
+        <!-- MODIFIER: Sous-titre -->
+        <p style="font-size: 16px; color: var(--text-muted); font-weight: 300; max-width: 520px; line-height: 1.7;">Leads non traités, négociateurs sans visibilité, emails sans réponse, sinistres mal gérés, administratif qui s'accumule... 5 minutes pour voir comment tout ça peut tourner automatiquement.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     INTRO — À lire avant notre appel
+     ══════════════════════════════════════════ -->
+<div id="intro" style="background: var(--white); border-bottom: 1px solid var(--gray-200);">
+  <div style="max-width: 1100px; margin: 0 auto; padding: 56px 48px;">
+
+    <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(241,90,36,0.08); border: 1px solid rgba(241,90,36,0.2); border-radius: 100px; padding: 6px 16px; margin-bottom: 28px;">
+      <span style="width: 6px; height: 6px; background: var(--orange); border-radius: 50%; display: inline-block;"></span>
+      <!-- MODIFIER: Badge intro -->
+      <span style="font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 0.08em; text-transform: uppercase;">À lire avant notre appel</span>
+    </div>
+
+    <!-- MODIFIER: Paragraphes intro -->
+    <p style="font-size: 17px; line-height: 1.8; color: var(--text-muted); margin-bottom: 20px; max-width: 740px;">
+      Prenez 5 minutes pour parcourir cette page. L'objectif : vous donner une vue d'ensemble et des idées sur ce que l'IA pourrait faire dans votre agence.
+    </p>
+
+    <p style="font-size: 17px; line-height: 1.8; color: var(--text-muted); margin-bottom: 20px; max-width: 740px;">
+      Dans une agence, les process manuels ne tiennent pas au volume. En 2026, les agences qui prennent de l'avance sont celles qui ont automatisé les tâches répétitives pour se concentrer sur des tâches à plus haute valeur ajoutée.
+    </p>
+
+    <p style="font-size: 17px; line-height: 1.8; color: var(--text-muted); max-width: 740px;">
+      Ce que vous allez voir ci-dessous, c'est concrètement ce qu'on met en place, et <strong style="color: var(--gray-900);">tout est entièrement personnalisable</strong>. On verra ensemble ce qu'on fait exactement pour votre agence lors de l'audit.
+    </p>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     AUTOMATIONS — Accordion
+     ══════════════════════════════════════════ -->
+<div class="section">
+  <!-- MODIFIER: Section label + titre + intro -->
+  <div class="section-label">Quelques exemples parmi d'autres</div>
+  <h2 class="section-title">Exemples de ce qui pourrait être automatisé</h2>
+  <p class="section-intro">Voici des idées d'automatisations. Ce n'est pas une liste figée, chaque mise en place est différente et construite autour de vos besoins pour un résultat 100% sur-mesure.</p>
+
+  <div class="accordion-list">
+
+    <!-- ── 01 EMAIL ── -->
+    <div class="accordion-item" id="acc-email">
+      <div class="accordion-header" onclick="toggleAccordion('acc-email')">
+        <div class="accordion-header-left">
+          <div class="accordion-num">01</div>
+          <div class="accordion-meta">
+            <!-- MODIFIER: Tag + Titre + Desc de chaque accordion -->
+            <span class="accordion-tag">Sur-mesure · IA avancée</span>
+            <span class="accordion-title">Gestion automatique des emails</span>
+            <span class="accordion-desc">Triage, réponses en brouillon et actions automatiques sur votre boîte mail.</span>
+          </div>
+        </div>
+        <button class="accordion-toggle" aria-label="Ouvrir">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+      </div>
+      <div class="accordion-body">
+
+        <div class="content-block">
+          <div class="block-label">En une phrase</div>
+          <p class="block-text">Votre boîte mail est un flux constant d'informations non triées. <strong>Cette automatisation y connecte une IA qui lit, catégorise, répond et agit à votre place</strong>, pour que vous n'ouvriez votre boîte mail que pour ce qui compte vraiment.</p>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Situation actuelle</div>
+          <p class="block-text">Dans une agence, les emails arrivent de partout : leads portails, relances clients, notifications, emails administratifs, demandes de renseignements, locataires... Ils atterrissent dans une boîte partagée ou dans plusieurs boîtes individuelles, sans triage, sans priorité, sans traçabilité.</p>
+          <div class="callout"><strong>Une boîte mail non structurée dans une agence, c'est une source permanente d'erreurs et d'opportunités manquées.</strong></div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Comment ça fonctionne</div>
+          <div class="steps-grid">
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 01</div>
+              <span class="step-emoji">📥</span>
+              <div class="step-title">Email entrant</div>
+              <div class="step-desc">Un email arrive dans votre boîte. L'automatisation se déclenche instantanément.</div>
+              <div class="step-arrow">›</div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 02</div>
+              <span class="step-emoji">🧠</span>
+              <div class="step-title">Analyse IA</div>
+              <div class="step-desc">L'IA lit l'email, le catégorise, lui attribue un tag et un niveau d'urgence de 1 à 3.</div>
+              <div class="step-arrow">›</div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 03</div>
+              <span class="step-emoji">✍️</span>
+              <div class="step-title">Brouillon de réponse</div>
+              <div class="step-desc">Pour les emails qui le permettent, l'IA rédige une réponse en brouillon, en attente de votre validation.</div>
+              <div class="step-arrow">›</div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 04</div>
+              <span class="step-emoji">⚡</span>
+              <div class="step-title">Actions associées</div>
+              <div class="step-desc">Redirection, ajout CRM, message WhatsApp au lead, gestion des sinistres, et bien d'autres.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Exemples d'actions, étape 4</div>
+          <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 4px;">
+            <div style="border: 1px solid var(--gray-200); border-radius: 10px; overflow: hidden;">
+              <div style="background: var(--gray-100); padding: 12px 16px;">
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+                  <span style="font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; color: var(--gray-900);">🏠 Exemple 1, Lead entrant</span>
+                  <span style="font-size: 12px; color: var(--orange); font-weight: 600; white-space: nowrap;">→ Voir automatisation 02</span>
+                </div>
+              </div>
+              <div style="padding: 16px; font-size: 14px; color: var(--text-muted); line-height: 1.7;">
+                Email détecté depuis SeLoger, LeBonCoin ou vos publicités. Le lead est créé dans le CRM, attribué au bon négociateur selon vos règles de répartition, et reçoit un message dans la minute avec quelques questions de qualification. <strong style="color: var(--gray-900);">L'agence qui répond la première a un avantage décisif.</strong>
+              </div>
+            </div>
+            <div style="border: 1px solid var(--gray-200); border-radius: 10px; overflow: hidden;">
+              <div style="background: var(--gray-100); padding: 12px 16px;">
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+                  <span style="font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; color: var(--gray-900);">🔧 Exemple 2, Déclaration de sinistre</span>
+                  <span style="font-size: 12px; color: var(--orange); font-weight: 600; white-space: nowrap;">→ Voir automatisation 03</span>
+                </div>
+              </div>
+              <div style="padding: 16px; font-size: 14px; color: var(--text-muted); line-height: 1.7;">
+                Un locataire déclare un sinistre par email. Le dossier est automatiquement créé dans le CRM avec toutes les informations extraites (nature du sinistre, adresse, date), le gestionnaire concerné est notifié, et un email de réponse est prêt à être envoyé. L'artisan le plus adapté est déjà sélectionné selon le type d'intervention et la localisation.
+              </div>
+            </div>
+            <div style="border: 1px solid var(--gray-200); border-radius: 10px; overflow: hidden;">
+              <div style="background: var(--gray-100); padding: 12px 16px;">
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; flex-wrap: wrap;">
+                  <span style="font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; color: var(--gray-900);">📨 Exemple 3, Redirection équipe</span>
+                </div>
+              </div>
+              <div style="padding: 16px; font-size: 14px; color: var(--text-muted); line-height: 1.7;">
+                Un email arrive dans la boîte générique de l'agence. L'IA analyse le contenu, identifie le sujet et la personne concernée, puis redirige automatiquement vers le bon membre de l'équipe.
+              </div>
+            </div>
+            <div style="border: 1px solid rgba(241,90,36,0.2); border-radius: 10px; overflow: hidden; background: rgba(241,90,36,0.03);">
+              <div style="background: rgba(241,90,36,0.08); padding: 12px 16px;">
+                <div style="display: flex; align-items: flex-start; gap: 8px; flex-wrap: wrap;">
+                  <span style="font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 700; color: var(--orange);">⚙️ Et bien d'autres selon vos besoins</span>
+                </div>
+              </div>
+              <div style="padding: 16px; font-size: 14px; color: var(--text-muted); line-height: 1.7;">
+                En fonction de la catégorie de l'email, on créera des actions automatisées entièrement sur-mesure.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Avant / Après</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 4px;" class="avant-apres-grid">
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid var(--gray-200);">
+              <div style="background: #fee2e2; padding: 8px 14px; display: flex; align-items: center; gap: 8px;">
+                <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; display:inline-block;"></span>
+                <span style="font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: #dc2626; letter-spacing: 0.06em; text-transform: uppercase;">Avant</span>
+                <span style="font-size: 12px; color: #9b9690; margin-left: auto;">Tout mélangé, réponses manuelles</span>
+              </div>
+              <!-- MODIFIER: Image "avant" email — remplacer le src -->
+              <img src="https://i.ibb.co/Xkf3sWYn/Capture-d-e-cran-Mars-31-2026.png" alt="Boîte mail avant automatisation" style="width: 100%; display: block; object-fit: cover;" />
+            </div>
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(241,90,36,0.25);">
+              <div style="background: rgba(241,90,36,0.08); padding: 8px 14px; display: flex; align-items: center; gap: 8px;">
+                <span style="width: 8px; height: 8px; background: var(--orange); border-radius: 50%; display:inline-block;"></span>
+                <span style="font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 0.06em; text-transform: uppercase;">Après</span>
+                <span style="font-size: 12px; color: #9b9690; margin-left: auto;">Catégorisé, tagué, priorisé, réponse prête</span>
+              </div>
+              <!-- MODIFIER: Image "après" email — remplacer le src -->
+              <img src="https://i.ibb.co/8LFdbQmw/Capture-d-e-cran-2026-04-01-a-09-59-43.png" alt="Boîte mail après automatisation" style="width: 100%; display: block; object-fit: cover;" />
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Ce que ça change concrètement</div>
+          <div class="stats-row">
+            <div class="stat-card"><div class="stat-icon">🧹</div><div class="stat-value">Clarté</div><div class="stat-label">Chaque email trié, tagué et priorisé dès réception</div></div>
+            <div class="stat-card"><div class="stat-icon">⚡</div><div class="stat-value">−30 à 50%</div><div class="stat-label">De temps passé sur vos emails chaque jour</div></div>
+            <div class="stat-card"><div class="stat-icon">🎯</div><div class="stat-value">Sur-mesure</div><div class="stat-label">Configuré selon votre activité et votre façon d'écrire</div></div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Infos pratiques</div>
+          <div class="infos-grid">
+            <div class="info-card"><div class="info-key">Délai de setup</div><div class="info-val">7 à 10 jours</div></div>
+            <div class="info-card"><div class="info-key">Disponibilité</div><div class="info-val">24h/24, 7j/7</div></div>
+            <div class="info-card"><div class="info-key">Entièrement</div><div class="info-val">Sur-mesure</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── 02 LEADS ── -->
+    <div class="accordion-item" id="acc-leads">
+      <div class="accordion-header" onclick="toggleAccordion('acc-leads')">
+        <div class="accordion-header-left">
+          <div class="accordion-num">02</div>
+          <div class="accordion-meta">
+            <span class="accordion-tag">Automatique · Attribution · WhatsApp</span>
+            <span class="accordion-title">Réception, attribution et relance automatique des leads</span>
+            <span class="accordion-desc">Chaque lead attribué au bon négociateur et recontacté en moins de 2 minutes.</span>
+          </div>
+        </div>
+        <button class="accordion-toggle" aria-label="Ouvrir">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+      </div>
+      <div class="accordion-body">
+
+        <div class="content-block">
+          <div class="block-label">En une phrase</div>
+          <p class="block-text">Dans une agence, un lead non traité rapidement est un lead perdu. Et avec plusieurs négociateurs, la question de qui s'en occupe crée de la friction. <strong>Cette automatisation attribue chaque lead au bon négociateur selon vos règles, le notifie immédiatement, et envoie un premier message au prospect en moins de 2 minutes.</strong></p>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Situation actuelle</div>
+          <p class="block-text">Vos leads arrivent depuis plusieurs sources en même temps :</p>
+          <div class="portails-list">
+            <span class="portail-tag">🏠 SeLoger</span>
+            <span class="portail-tag">📋 LeBonCoin</span>
+            <span class="portail-tag">🏡 Logic-Immo</span>
+            <span class="portail-tag">📱 Facebook / Instagram Ads</span>
+            <span class="portail-tag">🌐 Votre site web</span>
+            <span class="portail-tag">+ Autre</span>
+          </div>
+          <div class="callout" style="margin-top:16px"><strong>Dans une agence, le problème ce n'est pas seulement la vitesse, c'est aussi la traçabilité.</strong> Qui a pris ce lead ? A-t-il été relancé ? Est-il dans le CRM ? Sans automatisation, la réponse à ces questions est souvent floue. Et un lead sans réponse dans les premières minutes part chez un concurrent qui, lui, a peut-être automatisé.</div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Comment ça fonctionne</div>
+          <div class="steps-grid">
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 01</div>
+              <span class="step-emoji">📥</span>
+              <div class="step-title">Lead entrant</div>
+              <div class="step-desc">Un prospect arrive depuis SeLoger, LeBonCoin, votre site ou vos campagnes. L'automatisation se déclenche immédiatement.</div>
+              <div class="step-arrow">›</div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 02</div>
+              <span class="step-emoji">🎯</span>
+              <div class="step-title">Attribution auto</div>
+              <div class="step-desc">Le lead est rangé dans le CRM et attribué au bon négociateur selon vos règles : rotation, zone géographique, spécialité, ou disponibilité.</div>
+              <div class="step-arrow">›</div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 03</div>
+              <span class="step-emoji">💬</span>
+              <div class="step-title">WhatsApp en 2 min</div>
+              <div class="step-desc">Le prospect reçoit un message WhatsApp personnalisé avec le bien consulté et quelques questions de qualification.</div>
+              <div class="step-arrow">›</div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 04</div>
+              <span class="step-emoji">🔔</span>
+              <div class="step-title">Alerte négociateur</div>
+              <div class="step-desc">Le négociateur reçoit une notification avec toutes les infos du prospect pour le rappeler immédiatement en contexte.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Avant / Après</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 4px;" class="avant-apres-grid">
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid var(--gray-200);">
+              <div style="background: #fee2e2; padding: 8px 14px; display: flex; align-items: center; gap: 8px;">
+                <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; display:inline-block;"></span>
+                <span style="font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: #dc2626; letter-spacing: 0.06em; text-transform: uppercase;">Avant</span>
+              </div>
+              <div style="padding: 16px 18px; font-size: 14px; color: var(--gray-700); line-height: 1.7;">
+                Un lead arrive. Il atterrit dans la boîte commune. Personne ne sait clairement qui doit le prendre. Un négociateur finit par le voir 1h plus tard. Le prospect a déjà pris RDV avec une autre agence.
+              </div>
+            </div>
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(34,197,94,0.3);">
+              <div style="background: rgba(34,197,94,0.08); padding: 8px 14px; display: flex; align-items: center; gap: 8px;">
+                <span style="width: 8px; height: 8px; background: #22c55e; border-radius: 50%; display:inline-block;"></span>
+                <span style="font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: #16a34a; letter-spacing: 0.06em; text-transform: uppercase;">Après</span>
+              </div>
+              <div style="padding: 16px 18px; font-size: 14px; color: var(--gray-700); line-height: 1.7;">
+                Le lead arrive, est attribué en 10 secondes, le prospect reçoit un WhatsApp en moins de 2 minutes, et le négociateur est notifié. Il rappelle avec le contexte complet. Le lead est dans le CRM, traçable, suivi.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Ce que ça change concrètement</div>
+          <div class="stats-row">
+            <div class="stat-card"><div class="stat-icon">⚡</div><div class="stat-value">&lt; 2 min</div><div class="stat-label">Entre la demande du prospect et le premier message</div></div>
+            <div class="stat-card"><div class="stat-icon">📈</div><div class="stat-value">×4</div><div class="stat-label">De chances de conversion s'il est contacté dans les 5 minutes, d'après une étude Harvard.</div></div>
+            <div class="stat-card"><div class="stat-icon">📊</div><div class="stat-value">100%</div><div class="stat-label">Des leads tracés et attribués dans le CRM, sans exception</div></div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Infos pratiques</div>
+          <div class="infos-grid">
+            <div class="info-card"><div class="info-key">Délai de setup</div><div class="info-val">5 à 7 jours</div></div>
+            <div class="info-card"><div class="info-key">Disponibilité</div><div class="info-val">24h/24, 7j/7</div></div>
+            <div class="info-card"><div class="info-key">Entièrement</div><div class="info-val">Sur-mesure</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── 03 SINISTRES ── -->
+    <div class="accordion-item" id="acc-sinistres">
+      <div class="accordion-header" onclick="toggleAccordion('acc-sinistres')">
+        <div class="accordion-header-left">
+          <div class="accordion-num">03</div>
+          <div class="accordion-meta">
+            <span class="accordion-tag">Gestion locative · IA avancée · CRM</span>
+            <span class="accordion-title">Gestion et traitement automatique des sinistres</span>
+            <span class="accordion-desc">Email reçu, locataire rassuré, dossier créé, artisan identifié. Sans intervention manuelle.</span>
+          </div>
+        </div>
+        <button class="accordion-toggle" aria-label="Ouvrir">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+      </div>
+      <div class="accordion-body">
+
+        <div class="content-block">
+          <div class="block-label">En une phrase</div>
+          <p class="block-text">Dès qu'un email de sinistre arrive dans votre boîte, <strong>l'IA le détecte, catégorise le dossier, génère une réponse pour le locataire, crée la fiche dans le CRM, notifie le gestionnaire concerné et sélectionne l'artisan le plus adapté.</strong> Il ne reste plus qu'à valider.</p>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Situation actuelle</div>
+          <p class="block-text">Pour une agence qui gère de la location, les sinistres sont une source permanente de tension. L'email arrive souvent en dehors des heures de bureau, le gestionnaire doit lire, comprendre, rassurer le locataire, créer le dossier, trouver un artisan disponible et coordonner tout ça, souvent en parallèle d'une dizaine d'autres dossiers actifs.</p>
+          <div class="callout"><strong>Un sinistre mal géré, c'est un locataire qui perd confiance en votre agence.</strong> Et dans la gestion locative, la réputation se joue dans les moments de crise. La rapidité de votre première réponse est souvent ce qui fait la différence.</div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Comment ça fonctionne</div>
+          <div class="steps-grid">
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 01</div>
+              <span class="step-emoji">📩</span>
+              <div class="step-title">Détection email</div>
+              <div class="step-desc">Un email de sinistre arrive. L'IA le détecte, le catégorise et génère un brouillon de réponse pour rassurer le locataire.</div>
+              <div class="step-arrow">›</div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 02</div>
+              <span class="step-emoji">📋</span>
+              <div class="step-title">Création CRM + alerte</div>
+              <div class="step-desc">Le dossier est créé automatiquement avec toutes les infos. Le gestionnaire du bien est notifié immédiatement.</div>
+              <div class="step-arrow">›</div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 03</div>
+              <span class="step-emoji">🔧</span>
+              <div class="step-title">Sélection artisan</div>
+              <div class="step-desc">Les artisans partenaires adaptés sont identifiés selon la spécialité requise et la localisation du bien.</div>
+              <div class="step-arrow">›</div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 04</div>
+              <span class="step-emoji">✅</span>
+              <div class="step-title">Validation en 2 clics</div>
+              <div class="step-desc">Le gestionnaire confirme le choix de l'artisan et valide les deux messages. Tout le reste a été fait automatiquement.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Avant / Après</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 4px;" class="avant-apres-grid">
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid var(--gray-200);">
+              <div style="background: #fee2e2; padding: 8px 14px; display: flex; align-items: center; gap: 8px;">
+                <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; display:inline-block;"></span>
+                <span style="font-family: Montserrat, sans-serif; font-size: 11px; font-weight: 700; color: #dc2626; letter-spacing: 0.06em; text-transform: uppercase;">Avant</span>
+              </div>
+              <div style="padding: 16px; font-size: 14px; color: #6b6860; line-height: 1.6;">Email reçu un vendredi soir. Personne ne le voit avant lundi. Le locataire relance par téléphone le samedi matin. Le gestionnaire cherche un plombier disponible en catastrophe. Trois jours ont passé, le locataire est mécontent.</div>
+            </div>
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(241,90,36,0.25);">
+              <div style="background: rgba(241,90,36,0.08); padding: 8px 14px; display: flex; align-items: center; gap: 8px;">
+                <span style="width: 8px; height: 8px; background: #f15a24; border-radius: 50%; display:inline-block;"></span>
+                <span style="font-family: Montserrat, sans-serif; font-size: 11px; font-weight: 700; color: #f15a24; letter-spacing: 0.06em; text-transform: uppercase;">Après</span>
+              </div>
+              <div style="padding: 16px; font-size: 14px; color: #6b6860; line-height: 1.6;">Email reçu un vendredi soir. Le locataire reçoit une réponse automatique en quelques minutes. Le dossier est dans le CRM, l'artisan identifié. Le gestionnaire valide tout lundi matin en 30 secondes. Le locataire n'a rien eu à relancer.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Ce que ça change concrètement</div>
+          <div class="stats-row">
+            <div class="stat-card"><div class="stat-icon">⚡</div><div class="stat-value">Immédiat</div><div class="stat-label">Réponse locataire générée dès réception · 24h/24</div></div>
+            <div class="stat-card"><div class="stat-icon">📋</div><div class="stat-value">0 ressaisie</div><div class="stat-label">Dossier complet dans le CRM sans intervention manuelle</div></div>
+            <div class="stat-card"><div class="stat-icon">🔧</div><div class="stat-value">Précis</div><div class="stat-label">Artisan sélectionné selon spécialité et localisation du bien</div></div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Infos pratiques</div>
+          <div class="infos-grid">
+            <div class="info-card"><div class="info-key">Délai de setup</div><div class="info-val">7 à 10 jours</div></div>
+            <div class="info-card"><div class="info-key">Disponibilité</div><div class="info-val">24h/24, 7j/7</div></div>
+            <div class="info-card"><div class="info-key">Entièrement</div><div class="info-val">Sur-mesure</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── 04 VEILLE ── -->
+    <div class="accordion-item" id="acc-veille">
+      <div class="accordion-header" onclick="toggleAccordion('acc-veille')">
+        <div class="accordion-header-left">
+          <div class="accordion-num">04</div>
+          <div class="accordion-meta">
+            <span class="accordion-tag">Veille marché · LeBonCoin</span>
+            <span class="accordion-title">Veille LeBonCoin</span>
+            <span class="accordion-desc">Chaque nouveau bien dans votre zone capté automatiquement, 24h/24.</span>
+          </div>
+        </div>
+        <button class="accordion-toggle" aria-label="Ouvrir">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+      </div>
+      <div class="accordion-body">
+
+        <div class="content-block">
+          <div class="block-label">En une phrase</div>
+          <p class="block-text">Votre zone d'action est surveillée en permanence. <strong>Chaque nouveau bien qui apparaît sur LeBonCoin est automatiquement remonté dans votre CRM</strong>, et deux automatisations peuvent alors se déclencher : le matching acheteurs et la prospection vendeur.</p>
+        </div>
+
+        <!-- ── SOUS-ACCORDION : MATCHING ── -->
+        <div class="content-block">
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+
+            <div class="accordion-item sub-accordion" id="acc-matching" style="border-color: var(--gray-200);">
+              <div class="accordion-header" onclick="event.stopPropagation(); toggleAccordion('acc-matching')" style="padding: 16px 20px;">
+                <div class="accordion-header-left">
+                  <div class="accordion-meta">
+                    <span class="accordion-tag">Matching auto</span>
+                    <span class="accordion-title" style="font-size: 15px;">Matching acheteurs</span>
+                    <span class="accordion-desc">Chaque bien comparé à 100% de vos acheteurs en base.</span>
+                  </div>
+                </div>
+                <button class="accordion-toggle" aria-label="Ouvrir">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+              </div>
+              <div class="accordion-body">
+
+                <div class="content-block">
+                  <div class="block-label">En une phrase</div>
+                  <p class="block-text">Chaque nouveau bien détecté est automatiquement comparé aux critères de tous vos acheteurs en base. <strong>Si un match est trouvé, les deux fiches sont liées dans le CRM et vous êtes notifié immédiatement.</strong></p>
+                </div>
+
+                <div class="content-block">
+                  <div class="block-label">Situation actuelle</div>
+                  <p class="block-text">Surveiller LeBonCoin manuellement, c'est impossible à tenir dans la durée. Vous passez à côté de biens qui rentrent dans votre zone, et surtout à côté de matchs entre ces biens et les acheteurs qui attendent dans votre base.</p>
+                  <div class="callout"><strong>Un bien qui rentre, un acheteur qui correspond, une opportunité que vous n'auriez jamais vue sans ça.</strong></div>
+                </div>
+
+                <div class="content-block">
+                  <div class="block-label">Comment ça fonctionne</div>
+                  <div class="steps-grid">
+                    <div class="step-card">
+                      <div class="step-num">ÉTAPE 01</div>
+                      <span class="step-emoji">🔍</span>
+                      <div class="step-title">Détection automatique</div>
+                      <div class="step-desc">Un nouveau bien apparaît sur LeBonCoin dans votre zone. L'automatisation le détecte instantanément.</div>
+                      <div class="step-arrow">›</div>
+                    </div>
+                    <div class="step-card">
+                      <div class="step-num">ÉTAPE 02</div>
+                      <span class="step-emoji">📋</span>
+                      <div class="step-title">Ajout au CRM</div>
+                      <div class="step-desc">Le bien est automatiquement ajouté dans votre CRM avec toutes ses informations disponibles.</div>
+                      <div class="step-arrow">›</div>
+                    </div>
+                    <div class="step-card">
+                      <div class="step-num">ÉTAPE 03</div>
+                      <span class="step-emoji">🔗</span>
+                      <div class="step-title">Matching acheteurs</div>
+                      <div class="step-desc">Les caractéristiques du bien sont comparées aux critères de tous vos acheteurs en base.</div>
+                      <div class="step-arrow">›</div>
+                    </div>
+                    <div class="step-card">
+                      <div class="step-num">ÉTAPE 04</div>
+                      <span class="step-emoji">🔔</span>
+                      <div class="step-title">Notification match</div>
+                      <div class="step-desc">Si un match est trouvé, les deux fiches sont liées dans le CRM et vous êtes notifié immédiatement.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="content-block">
+                  <div class="block-label">Ce que ça change concrètement</div>
+                  <div class="stats-row">
+                    <div class="stat-card"><div class="stat-icon">👁️</div><div class="stat-value">0 raté</div><div class="stat-label">Chaque nouveau bien dans votre zone est capté automatiquement</div></div>
+                    <div class="stat-card"><div class="stat-icon">🔗</div><div class="stat-value">Auto</div><div class="stat-label">Chaque bien comparé à 100% de vos acheteurs en base</div></div>
+                    <div class="stat-card"><div class="stat-icon">📊</div><div class="stat-value">Vue 360°</div><div class="stat-label">Une vue d'ensemble sur votre marché en temps réel</div></div>
+                  </div>
+                </div>
+
+                <div class="content-block">
+                  <div class="block-label">Infos pratiques</div>
+                  <div class="infos-grid">
+                    <div class="info-card"><div class="info-key">Délai de setup</div><div class="info-val">7 à 10 jours</div></div>
+                    <div class="info-card"><div class="info-key">Source</div><div class="info-val">LeBonCoin</div></div>
+                    <div class="info-card"><div class="info-key">Disponibilité</div><div class="info-val">24h/24, 7j/7</div></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- ── SOUS-ACCORDION : PROSPECTION ── -->
+            <div class="accordion-item sub-accordion" id="acc-prospection" style="border-color: var(--gray-200);">
+              <div class="accordion-header" onclick="event.stopPropagation(); toggleAccordion('acc-prospection')" style="padding: 16px 20px;">
+                <div class="accordion-header-left">
+                  <div class="accordion-meta">
+                    <span class="accordion-tag">Prospection · SMS + WhatsApp</span>
+                    <span class="accordion-title" style="font-size: 15px;">Prospection vendeur automatique</span>
+                    <span class="accordion-desc">Un message envoyé au vendeur dès qu'un bien apparaît dans votre zone.</span>
+                  </div>
+                </div>
+                <button class="accordion-toggle" aria-label="Ouvrir">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+              </div>
+              <div class="accordion-body">
+
+                <div class="content-block">
+                  <div class="block-label">En une phrase</div>
+                  <p class="block-text">Dès qu'un bien est détecté dans votre zone, <strong>un message de prospection personnalisé est automatiquement envoyé par SMS ou WhatsApp à la personne qui tient l'annonce</strong>, pour lui proposer les services de votre agence avant vos concurrents.</p>
+                </div>
+
+                <div class="content-block">
+                  <div class="block-label">Situation actuelle</div>
+                  <p class="block-text">Contacter des vendeurs en direct depuis LeBonCoin est une stratégie efficace, mais chronophage. Trouver les annonces, extraire les coordonnées, rédiger un message, envoyer — répété des dizaines de fois par semaine, c'est un travail à plein temps. Résultat : personne ne le fait vraiment.</p>
+                  <div class="callout"><strong>La prospection passive, ça n'existe pas.</strong> Celui qui contacte le vendeur en premier a un avantage décisif. Cette automatisation fait ça pour vous, à chaque nouvelle annonce, sans exception.</div>
+                </div>
+
+                <div class="content-block">
+                  <div class="block-label">Comment ça fonctionne</div>
+                  <div class="steps-grid">
+                    <div class="step-card">
+                      <div class="step-num">ÉTAPE 01</div>
+                      <span class="step-emoji">🔍</span>
+                      <div class="step-title">Détection annonce</div>
+                      <div class="step-desc">Un nouveau bien apparaît sur LeBonCoin dans votre zone. Les coordonnées du vendeur sont extraites automatiquement.</div>
+                      <div class="step-arrow">›</div>
+                    </div>
+                    <div class="step-card">
+                      <div class="step-num">ÉTAPE 02</div>
+                      <span class="step-emoji">✍️</span>
+                      <div class="step-title">Message personnalisé</div>
+                      <div class="step-desc">L'IA rédige un message de prospection personnalisé selon le type de bien, la localisation et votre positionnement d'agence.</div>
+                      <div class="step-arrow">›</div>
+                    </div>
+                    <div class="step-card">
+                      <div class="step-num">ÉTAPE 03</div>
+                      <span class="step-emoji">💬</span>
+                      <div class="step-title">Envoi SMS ou WhatsApp</div>
+                      <div class="step-desc">Le message est envoyé automatiquement au vendeur par SMS ou WhatsApp, dans les minutes qui suivent la publication.</div>
+                      <div class="step-arrow">›</div>
+                    </div>
+                    <div class="step-card">
+                      <div class="step-num">ÉTAPE 04</div>
+                      <span class="step-emoji">🔔</span>
+                      <div class="step-title">Alerte négociateur</div>
+                      <div class="step-desc">Vous êtes notifié du contact envoyé avec toutes les infos du bien pour assurer le suivi.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="content-block">
+                  <div class="block-label">Avant / Après</div>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 4px;" class="avant-apres-grid">
+                    <div style="border-radius: 10px; overflow: hidden; border: 1px solid var(--gray-200);">
+                      <div style="background: #fee2e2; padding: 8px 14px; display: flex; align-items: center; gap: 8px;">
+                        <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; display:inline-block;"></span>
+                        <span style="font-family: Montserrat, sans-serif; font-size: 11px; font-weight: 700; color: #dc2626; letter-spacing: 0.06em; text-transform: uppercase;">Avant</span>
+                      </div>
+                      <div style="padding: 16px; font-size: 14px; color: #6b6860; line-height: 1.6;">Une annonce est publiée. Personne ne la voit. Trois autres agences contactent le vendeur dans la journée. Vous le découvrez une semaine plus tard.</div>
+                    </div>
+                    <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(241,90,36,0.25);">
+                      <div style="background: rgba(241,90,36,0.08); padding: 8px 14px; display: flex; align-items: center; gap: 8px;">
+                        <span style="width: 8px; height: 8px; background: #f15a24; border-radius: 50%; display:inline-block;"></span>
+                        <span style="font-family: Montserrat, sans-serif; font-size: 11px; font-weight: 700; color: #f15a24; letter-spacing: 0.06em; text-transform: uppercase;">Après</span>
+                      </div>
+                      <div style="padding: 16px; font-size: 14px; color: #6b6860; line-height: 1.6;">L'annonce est publiée. En quelques minutes, le vendeur reçoit un message de votre agence. Vous êtes le premier. Le négociateur est notifié pour assurer le suivi.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="content-block">
+                  <div class="block-label">Ce que ça change concrètement</div>
+                  <div class="stats-row">
+                    <div class="stat-card"><div class="stat-icon">⚡</div><div class="stat-value">Premier</div><div class="stat-label">Vous contactez chaque vendeur avant vos concurrents, sans exception</div></div>
+                    <div class="stat-card"><div class="stat-icon">💬</div><div class="stat-value">Auto</div><div class="stat-label">Messages personnalisés envoyés 24h/24 sans intervention manuelle</div></div>
+                    <div class="stat-card"><div class="stat-icon">📈</div><div class="stat-value">Volume</div><div class="stat-label">Des dizaines de prises de contact par semaine que personne ne ferait à la main</div></div>
+                  </div>
+                </div>
+
+                <div class="content-block">
+                  <div class="block-label">Infos pratiques</div>
+                  <div class="infos-grid">
+                    <div class="info-card"><div class="info-key">Délai de setup</div><div class="info-val">7 à 10 jours</div></div>
+                    <div class="info-card"><div class="info-key">Canaux</div><div class="info-val">SMS + WhatsApp</div></div>
+                    <div class="info-card"><div class="info-key">Disponibilité</div><div class="info-val">24h/24, 7j/7</div></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── 05 DOCUMENTS ── -->
+    <div class="accordion-item" id="acc-docs">
+      <div class="accordion-header" onclick="toggleAccordion('acc-docs')">
+        <div class="accordion-header-left">
+          <div class="accordion-num">05</div>
+          <div class="accordion-meta">
+            <span class="accordion-tag">Génération · Google Drive</span>
+            <span class="accordion-title">Génération automatique de documents</span>
+            <span class="accordion-desc">Contrats, propositions commerciales et autres documents générés en quelques secondes.</span>
+          </div>
+        </div>
+        <button class="accordion-toggle" aria-label="Ouvrir">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+      </div>
+      <div class="accordion-body">
+
+        <div class="content-block">
+          <div class="block-label">En une phrase</div>
+          <p class="block-text">Vous avez des modèles de documents avec des variables à remplir à chaque fois. <strong>Cette automatisation récupère les informations du contact et du bien dans votre base et génère le document complet en quelques secondes</strong>, sans ressaisir une seule information.</p>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Situation actuelle</div>
+          <p class="block-text">Contrat de location, proposition commerciale, mandat : à chaque fois vous ouvrez un modèle, vous remplacez les variables manuellement en cherchant les informations dans votre CRM ou dans vos emails. C'est répétitif, chronophage, et source d'erreurs.</p>
+          <div class="callout"><strong>Un document qui prend 10 minutes à rédiger peut en prendre 10 secondes.</strong> Sans erreur de copie, sans chercher les informations dans trois endroits différents.</div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Comment ça fonctionne</div>
+          <div class="steps-grid">
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 01</div>
+              <span class="step-emoji">📋</span>
+              <div class="step-title">Formulaire simple</div>
+              <div class="step-desc">Vous choisissez le type de document, le contact lié et le bien concerné. Rien d'autre.</div>
+              <div class="step-arrow">›</div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 02</div>
+              <span class="step-emoji">🔍</span>
+              <div class="step-title">Récupération des infos</div>
+              <div class="step-desc">L'automatisation va chercher toutes les informations du contact et du bien dans votre base.</div>
+              <div class="step-arrow">›</div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 03</div>
+              <span class="step-emoji">⚡</span>
+              <div class="step-title">Génération auto</div>
+              <div class="step-desc">Le document est généré automatiquement à partir de votre modèle, avec toutes les variables remplies.</div>
+              <div class="step-arrow">›</div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 04</div>
+              <span class="step-emoji">📁</span>
+              <div class="step-title">Stockage & lien</div>
+              <div class="step-desc">Le document est enregistré dans Google Drive et le lien est automatiquement ajouté dans la fiche CRM.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Avant / Après</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 4px;" class="avant-apres-grid">
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid var(--gray-200);">
+              <div style="background: #fee2e2; padding: 8px 14px; display: flex; align-items: center; gap: 8px;">
+                <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; display:inline-block;"></span>
+                <span style="font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: #dc2626; letter-spacing: 0.06em; text-transform: uppercase;">Avant</span>
+                <span style="font-size: 12px; color: #9b9690; margin-left: auto;">Saisie manuelle, variables oubliées</span>
+              </div>
+              <!-- MODIFIER: Image "avant" documents -->
+              <img src="https://i.ibb.co/60dsQ73n/Capture-d-e-cran-2026-04-01-a-10-09-08.png" alt="Documents avant automatisation" style="width: 100%; display: block; object-fit: cover;" />
+            </div>
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(241,90,36,0.25);">
+              <div style="background: rgba(241,90,36,0.08); padding: 8px 14px; display: flex; align-items: center; gap: 8px;">
+                <span style="width: 8px; height: 8px; background: var(--orange); border-radius: 50%; display:inline-block;"></span>
+                <span style="font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 0.06em; text-transform: uppercase;">Après</span>
+                <span style="font-size: 12px; color: #9b9690; margin-left: auto;">Généré en 10 sec, classé automatiquement</span>
+              </div>
+              <!-- MODIFIER: Image "après" documents -->
+              <img src="https://i.ibb.co/0P99xpN/Capture-d-e-cran-2026-04-01-a-10-10-29.png" alt="Documents après automatisation" style="width: 100%; display: block; object-fit: cover;" />
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Ce que ça change concrètement</div>
+          <div class="stats-row">
+            <div class="stat-card"><div class="stat-icon">⏱️</div><div class="stat-value">10 sec</div><div class="stat-label">Pour générer un document complet au lieu de 10–15 minutes</div></div>
+            <div class="stat-card"><div class="stat-icon">✅</div><div class="stat-value">0 erreur</div><div class="stat-label">Plus de copier-coller manuel, plus d'oublis de variables</div></div>
+            <div class="stat-card"><div class="stat-icon">📁</div><div class="stat-value">Auto-classé</div><div class="stat-label">Chaque document stocké et lié à la bonne fiche CRM</div></div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Infos pratiques</div>
+          <div class="infos-grid">
+            <div class="info-card"><div class="info-key">Délai de setup</div><div class="info-val">5 à 7 jours</div></div>
+            <div class="info-card"><div class="info-key">Stockage</div><div class="info-val">Google Drive</div></div>
+            <div class="info-card"><div class="info-key">Disponibilité</div><div class="info-val">24h/24, 7j/7</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── 06 AVIS GOOGLE ── -->
+    <div class="accordion-item" id="acc-avis">
+      <div class="accordion-header" onclick="toggleAccordion('acc-avis')">
+        <div class="accordion-header-left">
+          <div class="accordion-num">06</div>
+          <div class="accordion-meta">
+            <span class="accordion-tag">Réputation · SMS + Email</span>
+            <span class="accordion-title">Demande d'avis Google automatique</span>
+            <span class="accordion-desc">Plus d'avis sur la fiche de votre agence, sans jamais avoir à le demander manuellement.</span>
+          </div>
+        </div>
+        <button class="accordion-toggle" aria-label="Ouvrir">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+      </div>
+      <div class="accordion-body">
+
+        <div class="content-block">
+          <div class="block-label">En une phrase</div>
+          <p class="block-text">À la fin d'une transaction, personne ne pense à demander un avis, ni les négociateurs, ni la direction. <strong>Un simple bouton dans le CRM depuis la fiche contact suffit pour envoyer automatiquement une demande d'avis par SMS et email, au nom de l'agence.</strong></p>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Situation actuelle</div>
+          <p class="block-text">Dans une agence, la demande d'avis repose sur chaque négociateur individuellement, et c'est rarement fait. Résultat : une fiche Google avec peu d'avis. Et quand un prospect compare deux agences en ligne, il choisit souvent celle qui a le plus d'avis, pas forcément la meilleure.</p>
+          <div class="callout"><strong>Une agence avec 60 avis ou plus à 4,8 étoiles domine sa zone.</strong> Elle est choisie avant même le premier appel. Chaque transaction sans demande d'avis, c'est une opportunité de visibilité perdue face à un concurrent mieux référencé.</div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Comment ça fonctionne</div>
+          <div class="steps-grid">
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 01</div>
+              <span class="step-emoji">🖱️</span>
+              <div class="step-title">Un bouton dans le CRM</div>
+              <div class="step-desc">À la clôture d'un dossier, le négociateur clique sur un bouton depuis la fiche contact. Ou vous activez l'envoi automatique à chaque transaction clôturée.</div>
+              <div class="step-arrow">›</div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 02</div>
+              <span class="step-emoji">📱</span>
+              <div class="step-title">SMS envoyé</div>
+              <div class="step-desc">Le client reçoit un SMS personnalisé avec un lien direct vers la fiche Google de l'agence.</div>
+              <div class="step-arrow">›</div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 03</div>
+              <span class="step-emoji">📨</span>
+              <div class="step-title">Email envoyé</div>
+              <div class="step-desc">Un email personnalisé complète le SMS pour maximiser les chances de collecte, avec un ton qui reflète votre agence.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Ce que ça change concrètement</div>
+          <div class="stats-row">
+            <div class="stat-card"><div class="stat-icon">⭐</div><div class="stat-value">×5 à ×10</div><div class="stat-label">Plus d'avis collectés par rapport à une demande manuelle</div></div>
+            <div class="stat-card"><div class="stat-icon">⏱️</div><div class="stat-value">30 sec</div><div class="stat-label">C'est tout ce que ça prend pour déclencher la demande</div></div>
+            <div class="stat-card"><div class="stat-icon">🏆</div><div class="stat-value">Dominant</div><div class="stat-label">En 6 mois, l'agence la mieux notée de sa zone</div></div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Infos pratiques</div>
+          <div class="infos-grid">
+            <div class="info-card"><div class="info-key">Délai de setup</div><div class="info-val">5 à 7 jours</div></div>
+            <div class="info-card"><div class="info-key">Canaux</div><div class="info-val">SMS + Email</div></div>
+            <div class="info-card"><div class="info-key">Disponibilité</div><div class="info-val">24h/24, 7j/7</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── 07 CRÉATION DE CONTENU ── -->
+    <div class="accordion-item" id="acc-contenu">
+      <div class="accordion-header" onclick="toggleAccordion('acc-contenu')">
+        <div class="accordion-header-left">
+          <div class="accordion-num">07</div>
+          <div class="accordion-meta">
+            <span class="accordion-tag">Réseaux sociaux · IA · Publication auto</span>
+            <span class="accordion-title">Création et publication automatique de contenu</span>
+            <span class="accordion-desc">Un nouveau bien rentré, les posts Instagram, Facebook et LinkedIn rédigés et publiés automatiquement.</span>
+          </div>
+        </div>
+        <button class="accordion-toggle" aria-label="Ouvrir">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+      </div>
+      <div class="accordion-body">
+
+        <div class="content-block">
+          <div class="block-label">En une phrase</div>
+          <p class="block-text">Dès qu'un nouveau bien rentre dans votre agence, <strong>l'automatisation récupère toutes les informations, rédige les descriptions adaptées à chaque réseau social, vous les soumet pour validation, puis les publie automatiquement à la date et l'heure que vous choisissez.</strong></p>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Situation actuelle</div>
+          <p class="block-text">À chaque nouveau bien, il faut rédiger une description pour Instagram, adapter le ton pour LinkedIn, penser au format Facebook, trouver les bons hashtags, programmer les publications... C'est du temps pris sur la prospection et les clients, pour une tâche que l'IA peut faire mieux et plus vite.</p>
+          <div class="callout"><strong>Une agence active sur les réseaux publie régulièrement. Mais régulièrement, ça veut dire du temps.</strong> Avec cette automatisation, chaque nouveau bien devient un contenu publié sur tous vos réseaux sans effort manuel.</div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Comment ça fonctionne</div>
+          <div class="steps-grid">
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 01</div>
+              <span class="step-emoji">🏠</span>
+              <div class="step-title">Nouveau bien rentré</div>
+              <div class="step-desc">Un bien est ajouté dans votre CRM. L'automatisation se déclenche et récupère toutes ses informations.</div>
+              <div class="step-arrow">›</div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 02</div>
+              <span class="step-emoji">✍️</span>
+              <div class="step-title">Rédaction IA</div>
+              <div class="step-desc">L'IA rédige une description adaptée pour chaque réseau : ton Instagram, format LinkedIn, accroche Facebook.</div>
+              <div class="step-arrow">›</div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 03</div>
+              <span class="step-emoji">✅</span>
+              <div class="step-title">Validation rapide</div>
+              <div class="step-desc">Vous recevez les posts pour validation. Vous les relisez, adaptez si besoin, choisissez la date et l'heure de publication.</div>
+              <div class="step-arrow">›</div>
+            </div>
+            <div class="step-card">
+              <div class="step-num">ÉTAPE 04</div>
+              <span class="step-emoji">📲</span>
+              <div class="step-title">Publication automatique</div>
+              <div class="step-desc">Les posts sont publiés automatiquement sur Instagram, Facebook et LinkedIn à l'heure programmée.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Avant / Après</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 4px;" class="avant-apres-grid">
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid var(--gray-200);">
+              <div style="background: #fee2e2; padding: 8px 14px; display: flex; align-items: center; gap: 8px;">
+                <span style="width: 8px; height: 8px; background: #ef4444; border-radius: 50%; display:inline-block;"></span>
+                <span style="font-family: Montserrat, sans-serif; font-size: 11px; font-weight: 700; color: #dc2626; letter-spacing: 0.06em; text-transform: uppercase;">Avant</span>
+              </div>
+              <div style="padding: 16px; font-size: 14px; color: #6b6860; line-height: 1.6;">Un bien rentre. Entre les visites et les clients, personne ne prend le temps de rédiger et publier. Le bien n'est pas posté, ou posté trop tard avec un texte bâclé.</div>
+            </div>
+            <div style="border-radius: 10px; overflow: hidden; border: 1px solid rgba(241,90,36,0.25);">
+              <div style="background: rgba(241,90,36,0.08); padding: 8px 14px; display: flex; align-items: center; gap: 8px;">
+                <span style="width: 8px; height: 8px; background: #f15a24; border-radius: 50%; display:inline-block;"></span>
+                <span style="font-family: Montserrat, sans-serif; font-size: 11px; font-weight: 700; color: #f15a24; letter-spacing: 0.06em; text-transform: uppercase;">Après</span>
+              </div>
+              <div style="padding: 16px; font-size: 14px; color: #6b6860; line-height: 1.6;">Le bien rentre. Les posts sont rédigés automatiquement. Vous validez en 2 minutes, programmez la publication, et le contenu sort sur tous vos réseaux à l'heure choisie.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Ce que ça change concrètement</div>
+          <div class="stats-row">
+            <div class="stat-card"><div class="stat-icon">⚡</div><div class="stat-value">2 min</div><div class="stat-label">Pour valider et programmer la publication sur tous vos réseaux</div></div>
+            <div class="stat-card"><div class="stat-icon">📲</div><div class="stat-value">Multiréseaux</div><div class="stat-label">Instagram, Facebook, LinkedIn... publiés en une seule action</div></div>
+            <div class="stat-card"><div class="stat-icon">🎯</div><div class="stat-value">Sur-mesure</div><div class="stat-label">Ton et format adaptés à chaque réseau et à votre agence</div></div>
+          </div>
+        </div>
+
+        <div class="content-block">
+          <div class="block-label">Infos pratiques</div>
+          <div class="infos-grid">
+            <div class="info-card"><div class="info-key">Délai de setup</div><div class="info-val">7 à 10 jours</div></div>
+            <div class="info-card"><div class="info-key">Réseaux</div><div class="info-val">Insta · FB · LinkedIn</div></div>
+            <div class="info-card"><div class="info-key">Disponibilité</div><div class="info-val">24h/24, 7j/7</div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     CTA FINAL
+     ══════════════════════════════════════════ -->
+<div style="margin: 0; padding: 0 48px 48px; width: 100%;" id="cta-wrapper">
+  <div class="cta-section" id="audit">
+    <div class="cta-inner">
+
+      <!-- Bloc préparation — light -->
+      <div style="margin-bottom: 36px; max-width: 580px; margin-left: auto; margin-right: auto; background: var(--white); border: 1px solid var(--gray-200); border-radius: 12px; padding: 24px 28px; text-align: left;">
+        <p style="font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; color: var(--orange); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;">À préparer avant notre appel</p>
+        <p style="font-size: 14px; color: var(--text-muted); line-height: 1.8;">Lisez bien ce document et analysez les process dans votre agence : les frictions, les tâches répétitives et chronophages du quotidien. Je vous conseille de poser ces questions à votre équipe. Avec cela et une bonne vision d'ensemble, on pourra créer des solutions 100% sur-mesure.</p>
+      </div>
+
+      <h2 style="font-size: clamp(20px, 3vw, 30px);">Si l'appel n'est pas encore réservé :</h2>
+      <p class="cta-desc">30 minutes, gratuit, sans engagement.</p>
+      <a href="https://cal.com/lak-agency/5" class="cta-btn">
+        Réserver mon audit IA gratuit
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const subAccordions = ['acc-matching', 'acc-prospection'];
+
+  function toggleAccordion(id) {
+    const item = document.getElementById(id);
+    const isOpen = item.classList.contains('open');
+
+    if (subAccordions.includes(id)) {
+      // Sous-accordion : fermer les autres sous-accordions, puis toggle celui-ci
+      subAccordions.forEach(subId => {
+        if (subId !== id) document.getElementById(subId).classList.remove('open');
+      });
+      item.classList.toggle('open');
+      if (!isOpen) {
+        setTimeout(() => {
+          const top = item.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }, 50);
+      }
+    } else {
+      // Accordion principal : fermer tous les principaux + sous-accordions
+      document.querySelectorAll('.accordion-item.open').forEach(el => {
+        el.classList.remove('open');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        setTimeout(() => {
+          const top = item.getBoundingClientRect().top + window.scrollY - 80;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }, 50);
+      }
+    }
+  }
+</script>
+
+</body>
+</html>
