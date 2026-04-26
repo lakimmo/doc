@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lak. · Automatisation IA sur-mesure · Québec</title>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #f15a24;
+    --orange-light: #ff7340;
+    --bg: #f7f5f2;
+    --bg2: #ffffff;
+    --bg3: #f0ede9;
+    --border: rgba(0,0,0,0.09);
+    --text: #1a1a1a;
+    --muted: #6b6b6b;
+    --green: #2ecc71;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 40px;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(247,245,242,0.94);
+    backdrop-filter: blur(12px);
+  }
+  .logo {  font-weight: 800; font-size: 1.3rem; letter-spacing: -0.02em; }
+  .logo span { color: var(--orange); }
+  .nav-pill {
+    background: var(--orange); color: #fff; border: none; cursor: pointer;
+     font-size: 0.88rem; font-weight: 500;
+    padding: 10px 22px; border-radius: 100px;
+    text-decoration: none; transition: background .2s;
+  }
+  .nav-pill:hover { background: var(--orange-light); }
+
+  /* ─── HERO ─── */
+  .hero {
+    max-width: 860px; margin: 0 auto;
+    padding: 80px 24px 50px;
+    text-align: left;
+  }
+  .eyebrow {
+    display: inline-block;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--orange);
+    border: 1px solid rgba(241,90,36,0.35);
+    border-radius: 100px; padding: 5px 16px; margin-bottom: 32px;
+  }
+  h1 {
+    font-weight: 800;
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    line-height: 1.0; letter-spacing: -0.04em;
+    margin-bottom: 28px;
+  }
+  h1 em { color: var(--orange); font-style: italic; }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--muted); max-width: 580px; margin: 0 0 36px;
+    font-weight: 400; line-height: 1.65;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--orange); color: #fff;
+     font-size: 1rem; font-weight: 500;
+    padding: 15px 36px; border-radius: 100px;
+    text-decoration: none; transition: background .2s, transform .15s;
+    border: none; cursor: pointer;
+  }
+  .cta-btn:hover { background: var(--orange-light); transform: translateY(-1px); }
+  .read-time { font-size: 0.8rem; color: var(--muted); margin-top: 16px; }
+
+  /* ─── STATS ─── */
+  .stats-row {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    max-width: 800px; margin: 0 auto 70px;
+    border: 1px solid var(--border); border-radius: 16px;
+    overflow: hidden;
+  }
+  .stat-box {
+    padding: 30px 24px; text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .stat-box:last-child { border-right: none; }
+  .stat-num {
+     font-weight: 800;
+    font-size: 2rem; color: var(--orange); letter-spacing: -0.04em;
+  }
+  .stat-label { font-size: 0.82rem; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+
+  @keyframes tick { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+
+
+
+  /* ─── SECTION TITLES ─── */
+  section { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--orange); font-weight: 500; margin-bottom: 16px;
+  }
+  h2 {
+     font-weight: 800;
+    font-size: clamp(1.7rem, 4vw, 2.6rem); letter-spacing: -0.04em;
+    line-height: 1.1; margin-bottom: 20px;
+  }
+  .section-sub { font-size: 1rem; color: var(--muted); margin-bottom: 28px; max-width: 580px; line-height: 1.7; }
+
+  /* ─── PROBLEM CARDS ─── */
+  .problem-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 36px; }
+  .prob-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 14px; padding: 26px 22px;
+  }
+  .prob-icon { font-size: 1.5rem; margin-bottom: 12px; }
+  .prob-card strong { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.95rem; }
+  .prob-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+  /* ─── DIVIDER ─── */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 20px 0 60px; }
+
+  /* ─── CALCULATOR ─── */
+  .calc-box {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 18px; padding: 40px 36px; margin-bottom: 0;
+  }
+  .calc-title {  font-weight: 700; font-size: 1.15rem; margin-bottom: 8px; }
+  .calc-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 32px; }
+  .calc-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
+  .calc-field label {
+    display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 8px; letter-spacing: 0.04em;
+  }
+  .calc-field input {
+    width: 100%; background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 10px; color: var(--text); 
+    font-size: 1rem; padding: 12px 16px; outline: none; transition: border-color .2s;
+  }
+  .calc-field input:focus { border-color: rgba(241,90,36,0.5); }
+  .calc-btn {
+    background: var(--orange); color: #fff; border: none; cursor: pointer;
+     font-size: 0.95rem; font-weight: 500;
+    padding: 13px 28px; border-radius: 10px; transition: background .2s;
+  }
+  .calc-btn:hover { background: var(--orange-light); }
+  .calc-results { display: none; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+  .calc-results.show { display: grid; }
+  .calc-result-card {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px; text-align: center;
+  }
+  .calc-result-card .val {
+     font-weight: 800;
+    font-size: 1.6rem; color: var(--orange); display: block; margin-bottom: 6px;
+  }
+  .calc-result-card small { font-size: 0.78rem; color: var(--muted); line-height: 1.4; }
+  .calc-note { font-size: 0.78rem; color: var(--muted); margin-top: 16px; font-style: italic; }
+
+  /* ─── SYSTEMS HEADER ─── */
+  .systems-header { margin-bottom: 44px; }
+  .systems-header h2 { margin-bottom: 12px; }
+
+
+  /* ─── ACCORDION ─── */
+  .accord-item {
+    border: 1px solid var(--border); border-radius: 16px;
+    margin-bottom: 16px; overflow: hidden;
+    background: var(--bg2);
+  }
+  .accord-head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 26px 30px; cursor: pointer; user-select: none;
+    transition: background .2s;
+  }
+  .accord-head:hover { background: rgba(0,0,0,0.02); }
+  .accord-left { display: flex; align-items: center; gap: 18px; }
+  .accord-num {
+     font-size: 0.8rem; font-weight: 700;
+    color: var(--orange); letter-spacing: 0.06em;
+  }
+  .accord-title {  font-weight: 700; font-size: 1.05rem; }
+  .accord-sub { font-size: 0.82rem; color: var(--muted); margin-top: 3px; }
+  .accord-arrow {
+    font-size: 1.2rem; color: var(--muted);
+    transition: transform .3s; flex-shrink: 0;
+  }
+  .accord-item.open .accord-arrow { transform: rotate(180deg); }
+  .accord-body { display: none; padding: 0 30px 30px; }
+  .accord-item.open .accord-body { display: block; }
+
+  /* ─── INNER ACCORD (sub-dropdowns) ─── */
+  .inner-accord { margin-top: 20px; }
+  .inner-item {
+    border: 1px solid var(--border); border-radius: 12px;
+    margin-bottom: 10px; background: var(--bg3); overflow: hidden;
+  }
+  .inner-head {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    padding: 16px 22px; cursor: pointer; user-select: none; gap: 10px;
+  }
+  .inner-head-left { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; flex: 1; }
+  .inner-label { font-weight: 600; font-size: 0.92rem; }
+  .inner-tag {
+    font-size: 0.72rem; background: rgba(241,90,36,0.15);
+    color: var(--orange); border-radius: 100px; padding: 3px 10px; white-space: nowrap;
+  }
+  .inner-arrow { color: var(--muted); transition: transform .3s; }
+  .inner-item.open .inner-arrow { transform: rotate(180deg); }
+  .inner-body { display: none; padding: 0 22px 20px; }
+  .inner-item.open .inner-body { display: block; }
+
+  /* ─── CONTENT BLOCKS ─── */
+  .one-line {
+    font-size: 1rem; font-weight: 500; color: var(--text);
+    border-left: 3px solid var(--orange); padding-left: 16px;
+    margin-bottom: 24px;
+  }
+  .one-line strong { color: var(--orange); }
+  .situation {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 12px; padding: 22px; margin-bottom: 24px;
+    font-size: 0.9rem; color: var(--muted); line-height: 1.6;
+  }
+  .situation strong { color: var(--text); }
+  .steps-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+  .step-card {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px 16px; text-align: left;
+  }
+  .step-icon { font-size: 1.4rem; margin-bottom: 8px; }
+  .step-num { font-size: 0.7rem; color: var(--orange); font-weight: 600; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .step-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.45; }
+  .step-card strong { display: block; font-size: 0.85rem; color: var(--text); margin-bottom: 4px; }
+  .ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+  .ba-card {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px;
+  }
+  .ba-card h4 { font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 12px; color: var(--muted); }
+  .ba-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .ba-card li { font-size: 0.88rem; }
+  .ba-card.before li::before { content: "❌ "; }
+  .ba-card.after li::before { content: "✅ "; }
+  .metrics-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .metric-card {
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 12px; padding: 20px; text-align: center;
+  }
+  .metric-val {
+     font-weight: 800;
+    font-size: 1.4rem; color: var(--orange); display: block; margin-bottom: 4px;
+  }
+  .metric-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.4; }
+
+
+
+  footer {
+    border-top: 1px solid var(--border); padding: 32px 40px;
+    display: flex; justify-content: space-between; align-items: center;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .footer-logo {  font-weight: 800; font-size: 1.1rem; }
+  .footer-logo span { color: var(--orange); }
+  footer small { font-size: 0.8rem; color: var(--muted); }
+
+  @media (max-width: 680px) {
+    nav { padding: 18px 20px; }
+    .hero { padding: 60px 20px 40px; }
+    .stats-row { grid-template-columns: 1fr; }
+    .stat-box { border-right: none; border-bottom: 1px solid var(--border); }
+    .stat-box:last-child { border-bottom: none; }
+    .problem-grid { grid-template-columns: 1fr; }
+    .steps-row { grid-template-columns: 1fr; }
+    .ba-grid { grid-template-columns: 1fr; }
+    .metrics-row { grid-template-columns: 1fr; }
+    .calc-fields { grid-template-columns: 1fr; }
+    .calc-results.show { grid-template-columns: 1fr; }
+    .perks { grid-template-columns: 1fr; }
+    .accord-head { padding: 20px; }
+    .accord-body { padding: 0 20px 24px; }
+    .pricing-box { padding: 32px 24px; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+
+<div style="padding:28px 40px 0;">
+  <div class="logo">Lak<span>.</span></div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow">Automatisation IA</div>
+  <h1>L'IA au service<br><em>de ton entreprise.</em></h1>
+  <p class="hero-sub">On installe des systèmes d'automatisation IA sur-mesure qui : génèrent tes soumissions, relancent tes anciens clients/prospects et remplissent ton calendrier. Automatiquement.</p>
+  <p class="read-time">5 minutes de lecture</p>
+</div>
+
+<!-- BANDEAU ORANGE -->
+<div style="background:var(--orange);overflow:hidden;padding:14px 0;margin-bottom:70px;">
+  <div style="display:flex;white-space:nowrap;animation:tick 30s linear infinite;will-change:transform;">
+    <span style="font-size:0.76rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#fff;padding:0 28px;flex-shrink:0;">· 100% Satisfait ou remboursé</span>
+    <span style="font-size:0.76rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#fff;padding:0 28px;flex-shrink:0;">· Livré en 7 jours</span>
+    <span style="font-size:0.76rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#fff;padding:0 28px;flex-shrink:0;">· Soumissions automatiques</span>
+    <span style="font-size:0.76rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#fff;padding:0 28px;flex-shrink:0;">· Zéro lead perdu</span>
+    <span style="font-size:0.76rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#fff;padding:0 28px;flex-shrink:0;">· Relance automatique</span>
+    <span style="font-size:0.76rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#fff;padding:0 28px;flex-shrink:0;">· SEO automatisé</span>
+    <span style="font-size:0.76rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#fff;padding:0 28px;flex-shrink:0;">· Zéro fixe mensuel</span>
+    <span style="font-size:0.76rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#fff;padding:0 28px;flex-shrink:0;">· IA sur-mesure</span>
+    <span style="font-size:0.76rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#fff;padding:0 28px;flex-shrink:0;">· 100% Satisfait ou remboursé</span>
+    <span style="font-size:0.76rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#fff;padding:0 28px;flex-shrink:0;">· Livré en 7 jours</span>
+    <span style="font-size:0.76rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#fff;padding:0 28px;flex-shrink:0;">· Soumissions automatiques</span>
+    <span style="font-size:0.76rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#fff;padding:0 28px;flex-shrink:0;">· Zéro lead perdu</span>
+    <span style="font-size:0.76rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#fff;padding:0 28px;flex-shrink:0;">· Relance automatique</span>
+    <span style="font-size:0.76rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#fff;padding:0 28px;flex-shrink:0;">· SEO automatisé</span>
+    <span style="font-size:0.76rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#fff;padding:0 28px;flex-shrink:0;">· Zéro fixe mensuel</span>
+    <span style="font-size:0.76rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:#fff;padding:0 28px;flex-shrink:0;">· IA sur-mesure</span>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section>
+  <div class="section-label">Le problème</div>
+  <h2>En 2026, l'IA change tout<br>pour les entrepreneurs.</h2>
+  <p class="section-sub">Chaque journée est pleine de tâches répétitives qui te volent du temps, de l'énergie, et des opportunités. L'IA est là pour absorber exactement ça.</p>
+
+  <p style="color:var(--muted);font-size:.95rem;line-height:1.8;margin-bottom:28px;max-width:680px;">T'as pas arrêté de travailler depuis que t'as lancé. Mais plus ton entreprise grossit, plus le nombre de choses à gérer grossit avec elle. Répondre au téléphone, répondre aux prospects, envoyer des soumissions, suivre les clients, gérer ta réputation en ligne, rester visible sur Google... Chacun de ces points de friction te coûte du temps et souvent, des contrats.</p>
+
+  <div class="problem-grid">
+    <div class="prob-card">
+      <div class="prob-icon">📉</div>
+      <strong>La croissance qui plafonne faute de systèmes</strong>
+      <p>À un certain stade, travailler plus ne suffit plus. Ce qui te fait passer au niveau suivant, c'est des systèmes qui tournent sans toi. L'IA est le levier que la plupart de tes concurrents n'ont pas encore activé.</p>
+    </div>
+    <div class="prob-card">
+      <div class="prob-icon">⏱️</div>
+      <strong>Le temps que tu peux pas te permettre de perdre</strong>
+      <p>Rédiger une soumission, relancer des clients/prospects, gérer ton référencement Google, répondre au téléphone des tâches nécessaires, mais qui te gardent loin de ce que tu fais vraiment bien. L'IA s'en occupe à ta place, avec ta voix et tes informations.</p>
+    </div>
+    <div class="prob-card">
+      <div class="prob-icon">💸</div>
+      <strong>Les opportunités qui se perdent en silence</strong>
+      <p>Un appel manqué, un prospect chaud qui attend sa soumission depuis 3 jours et qui finit chez un concurrent, un ancien client jamais relancé, un client satisfait qui ne laisse pas d'avis Google. Ces pertes s'accumulent chaque semaine et font une différence énorme sur le revenu sans rajouter de budget Ads.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SYSTEMS -->
+<section>
+  <hr class="divider">
+  <div class="section-label">Les systèmes</div>
+  <div class="systems-header">
+    <h2>Idées de ce qu'on peut<br>installer dans ton entreprise</h2>
+    <p class="section-sub">On propose des solutions 100% sur-mesure, mais voici quelques idées d'automatisations clé en main qu'on peut t'implémenter.</p>
+  </div>
+
+  <!-- ─── ACCORD 1 : Soumissions ─── -->
+  <div class="accord-item" id="a1">
+    <div class="accord-head" onclick="toggleAccord('a1')">
+      <div class="accord-left">
+        <div class="accord-num">01</div>
+        <div>
+          <div class="accord-title">Automatisation des demandes de soumissions</div>
+          <div class="accord-sub">De la demande à la soumission envoyée sans intervention de ta part</div>
+        </div>
+      </div>
+      <div class="accord-arrow">⌄</div>
+    </div>
+    <div class="accord-body">
+
+      <div class="one-line">Dès qu'un prospect soumet une demande de soumission, il reçoit un SMS immédiat. Une IA entraînée sur ton entreprise génère la soumission. Tu valides. Un clic, <strong>c'est parti.</strong></div>
+
+      <div class="situation">
+        <strong>Situation actuelle</strong><br>
+        Un prospect remplit ton formulaire. Il attend. Toi t'es sur un chantier ou rentré crevé. T'as pas le temps et l'envie de le faire. Tu prends plusieurs heures voire jours avant de lui répondre pendant ce temps, il signe chez un concurrent. <strong>Chaque heure de délai te coûte des contrats.</strong>
+      </div>
+
+      <h4 style="font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Comment ça fonctionne</h4>
+      <div class="steps-row">
+        <div class="step-card">
+          <div class="step-icon">📋</div>
+          <div class="step-num">Étape 01</div>
+          <strong>Formulaire soumis</strong>
+          <div class="step-desc">Le prospect remplit ton formulaire de demande de soumission sur ton site.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-icon">💬</div>
+          <div class="step-num">Étape 02</div>
+          <strong>SMS immédiat au prospect</strong>
+          <div class="step-desc">En moins de 30 secondes, il reçoit un SMS personnalisé confirmant que sa demande a bien été reçue et qu'il aura sa soumission rapidement.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-icon">🤖</div>
+          <div class="step-num">Étape 03</div>
+          <strong>IA génère la soumission</strong>
+          <div class="step-desc">Une IA entraînée sur ton entreprise, tes anciennes soumissions et le projet décrit dans le formulaire génère automatiquement un document de soumission complet.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-icon">✅</div>
+          <div class="step-num">Étape 04</div>
+          <strong>Tu valides et envoies</strong>
+          <div class="step-desc">Tu lis, t'adaptes si tu veux, tu cliques. La soumission part par mail et SMS avec un message personnalisé au prospect.</div>
+        </div>
+      </div>
+
+      <div class="ba-grid">
+        <div class="ba-card before">
+          <h4>Avant · Sans le système</h4>
+          <ul>
+            <li>Prospect attend 1 à 3 jours</li>
+            <li>Soumission rédigée manuellement</li>
+            <li>Tu perds des heures après ta journée</li>
+            <li>Prospect signe ailleurs pendant ce temps</li>
+          </ul>
+        </div>
+        <div class="ba-card after">
+          <h4>Après · Avec le système</h4>
+          <ul>
+            <li>SMS au prospect en moins de 30 secondes</li>
+            <li>Soumission générée automatiquement</li>
+            <li>Tu passes juste 5 min à valider</li>
+            <li>Envoyée avant que le prospect ait le temps d'appeler ailleurs</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="metrics-row">
+        <div class="metric-card"><span class="metric-val">&lt; 30s</span><div class="metric-desc">délai de réponse au prospect après chaque demande</div></div>
+        <div class="metric-card"><span class="metric-val">5 min</span><div class="metric-desc">ton temps pour valider et envoyer une soumission complète</div></div>
+        <div class="metric-card"><span class="metric-val">+ contrats</span><div class="metric-desc">tu réponds le premier, tu convertis plus</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── ACCORD 2 : Appels manqués ─── -->
+  <div class="accord-item" id="a2">
+    <div class="accord-head" onclick="toggleAccord('a2')">
+      <div class="accord-left">
+        <div class="accord-num">02</div>
+        <div>
+          <div class="accord-title">Réponse immédiate aux appels manqués</div>
+          <div class="accord-sub">Zéro lead perdu, même à 23h un dimanche</div>
+        </div>
+      </div>
+      <div class="accord-arrow">⌄</div>
+    </div>
+    <div class="accord-body">
+
+      <div class="situation">
+        T'es sur un chantier, il est tard, ou c'est dimanche. Le téléphone sonne. Tu peux pas répondre. Le prospect attend 30 secondes, raccroche, et compose le numéro d'après. Dans 80% des cas, le premier contracteur à répondre obtient le contrat.<br><br>
+        <strong>Chaque appel sans réponse = un contrat qui part chez un concurrent.</strong> Pas parce que t'es moins bon. Juste parce qu'il a répondu en premier.
+      </div>
+
+      <div class="calc-box" style="margin-bottom:24px;padding:24px 26px;">
+        <div class="calc-title" style="font-size:1rem;">💰 Calcule combien tu laisses partir chaque mois</div>
+        <div class="calc-sub" style="margin-bottom:20px;">Entre tes chiffres on te montre exactement ce que ça représente. Chiffres indicatifs, peuvent varier selon ton activité.</div>
+        <div class="calc-fields" style="gap:14px;margin-bottom:18px;">
+          <div class="calc-field">
+            <label>Appels manqués par semaine</label>
+            <input type="number" id="numLeads" placeholder="ex. 10" min="0" style="padding:9px 14px;font-size:.9rem;">
+          </div>
+          <div class="calc-field">
+            <label>Valeur moyenne d'un job ($)</label>
+            <input type="number" id="avgValue" placeholder="ex. 800" min="0" style="padding:9px 14px;font-size:.9rem;">
+          </div>
+          <div class="calc-field">
+            <label>Taux de conversion (%)</label>
+            <input type="number" id="convRate" placeholder="ex. 50" min="0" max="100" style="padding:9px 14px;font-size:.9rem;">
+          </div>
+        </div>
+        <button class="calc-btn" onclick="calcQuotes()" style="padding:10px 22px;font-size:.88rem;">Calculer mes pertes →</button>
+        <div class="calc-results" id="calcResults">
+          <div class="calc-result-card">
+            <span class="val" id="r1"></span>
+            <small>opportunités manquées<br>par mois</small>
+          </div>
+          <div class="calc-result-card">
+            <span class="val" id="r2"></span>
+            <small>revenus potentiels perdus<br>par mois</small>
+          </div>
+          <div class="calc-result-card">
+            <span class="val" id="r3"></span>
+            <small>revenus potentiels perdus<br>par an</small>
+          </div>
+        </div>
+        <p class="calc-note" id="calcNote"></p>
+      </div>
+
+      <!-- Inner: IA vocale en 1 -->
+      <p style="font-size:.9rem;color:var(--muted);margin-bottom:20px;">Deux solutions existent. On t'installe <strong style="color:var(--text)">l'une ou l'autre selon ta préférence</strong>, les deux ont le même objectif : qu'aucun prospect n'attende sans réponse.</p>
+      <div class="inner-accord">
+        <div class="inner-item" id="ia1">
+          <div class="inner-head" onclick="toggleInner('ia1')">
+            <div class="inner-head-left">
+              <span class="inner-label">Assistant vocal IA entraîné sur ton activité</span>
+              <span class="inner-tag">Plus efficace</span>
+            </div>
+            <span class="inner-arrow">⌄</span>
+          </div>
+          <div class="inner-body">
+            <div class="one-line" style="margin-bottom:16px;">Un assistant IA entraîné sur ton activité répond à ta place, parle au prospect en temps réel, qualifie son besoin et <strong>booké un rendez-vous directement dans ton calendrier.</strong></div>
+            <div class="situation">Le meilleur moyen de convertir un prospect qui appelle, c'est qu'il ait quelqu'un au bout du fil immédiatement. Un assistant IA qui décroche à ta place, parle au prospect en temps réel, comprend son besoin et l'oriente vers un RDV ou te transmet ses infos directement.<br><br><strong>L'IA ne remplace pas ton expertise terrain.</strong> Elle fait juste s'assurer que le prospect ne raccroche jamais sans réponse. Il a un RDV confirmé avant de raccrocher.</div>
+            <div class="steps-row">
+              <div class="step-card"><div class="step-icon">📞</div><div class="step-num">Étape 01</div><strong>Appel entrant</strong><div class="step-desc">Tu peux pas répondre. L'IA décroche en moins de 3 secondes.</div></div>
+              <div class="step-card"><div class="step-icon">🤖</div><div class="step-num">Étape 02</div><strong>Conversation naturelle</strong><div class="step-desc">L'IA se présente comme ton assistante, discute avec le prospect et comprend son besoin.</div></div>
+              <div class="step-card"><div class="step-icon">📅</div><div class="step-num">Étape 03</div><strong>S'adapte au besoin</strong><div class="step-desc">Si c'est un nouveau prospect : l'IA propose un créneau directement dans ton calendrier et confirme le RDV en direct.</div></div>
+              <div class="step-card"><div class="step-icon">🔔</div><div class="step-num">Étape 04</div><strong>Tu reçois tout</strong><div class="step-desc">Si c'est une demande spécifique : l'IA prend les infos et te les envoie directement pour que tu aies tout en main avant de rappeler.</div></div>
+            </div>
+            <div class="ba-grid">
+              <div class="ba-card before"><h4>Avant · Sans le système</h4><ul><li>Téléphone sonne dans le vide</li><li>Le prospect tombe sur un voicemail et raccroche</li><li>Zéro RDV, zéro contrat</li><li>T'as même pas su qui avait appelé</li></ul></div>
+              <div class="ba-card after"><h4>Après · Avec le système</h4><ul><li>L'IA répond en moins de 3 secondes</li><li>Le prospect a quelqu'un au bout du fil immédiatement</li><li>RDV confirmé avant de raccrocher</li><li>Tu reçois un résumé complet de l'appel</li><li>Gain de temps : pas besoin de rappeler le prospect</li></ul></div>
+            </div>
+            <div class="metrics-row">
+              <div class="metric-card"><span class="metric-val">&lt; 3 sec</span><div class="metric-desc">délai de décrochage de l'IA après la première sonnerie</div></div>
+              <div class="metric-card"><span class="metric-val">RDV direct</span><div class="metric-desc">le prospect raccroche avec un rendez-vous confirmé dans le calendrier</div></div>
+              <div class="metric-card"><span class="metric-val">0 lead perdu</span><div class="metric-desc">chaque appel est capturé, qualifié et converti automatiquement</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inner: SMS en 2 -->
+        <div class="inner-item" id="ia2">
+          <div class="inner-head" onclick="toggleInner('ia2')">
+            <div class="inner-head-left">
+              <span class="inner-label">SMS automatique de qualification</span>
+              <span class="inner-tag">Plus simple</span>
+            </div>
+            <span class="inner-arrow">⌄</span>
+          </div>
+          <div class="inner-body">
+            <div class="one-line" style="margin-bottom:16px;">Dès que tu rates un appel, le prospect reçoit un SMS avec ton nom en moins de 10 secondes, <strong>il sait que t'as vu son appel et que tu vas le rappeler.</strong></div>
+            <div class="steps-row">
+              <div class="step-card"><div class="step-icon">📞</div><div class="step-num">Étape 01</div><strong>Appel manqué</strong><div class="step-desc">Tu rates un appel. Le système le détecte instantanément.</div></div>
+              <div class="step-card"><div class="step-icon">💬</div><div class="step-num">Étape 02</div><strong>SMS en 10 sec</strong><div class="step-desc">Le prospect reçoit un message automatique lui disant que tu vas le rappeler dès que possible et qu'en attendant il peut expliquer sa situation ici : [LIEN].</div></div>
+              <div class="step-card"><div class="step-icon">📋</div><div class="step-num">Étape 03</div><strong>Formulaire de qualification</strong><div class="step-desc">Il clique sur le lien, explique sa situation et peut prendre un RDV directement, qui apparaît aussitôt dans ton calendrier.</div></div>
+              <div class="step-card"><div class="step-icon">✅</div><div class="step-num">Étape 04</div><strong>RDV dans ton calendrier</strong><div class="step-desc">Quand tu rappelles ou que le RDV arrive, t'as déjà son problème, ses infos et le contexte complet.</div></div>
+            </div>
+            <div class="ba-grid">
+              <div class="ba-card before"><h4>Avant · Sans le système</h4><ul><li>Appel manqué = job raté</li><li>Aucune réponse, le prospect appelle ailleurs</li><li>Tu rappelles dans le vide 2h plus tard</li></ul></div>
+              <div class="ba-card after"><h4>Après · Avec le système</h4><ul><li>T'as manqué l'appel, mais en automatique le prospect a été capté</li><li>Il a expliqué sa situation et pris un RDV</li><li>Ce qui aurait été un job raté devient un contrat</li></ul></div>
+            </div>
+            <div class="metrics-row">
+              <div class="metric-card"><span class="metric-val">&lt; 10 sec</span><div class="metric-desc">délai de réponse après chaque appel manqué</div></div>
+              <div class="metric-card"><span class="metric-val">100%</span><div class="metric-desc">des prospects reçoivent une réponse, même à 23h ou le dimanche</div></div>
+              <div class="metric-card"><span class="metric-val">+ conversion</span><div class="metric-desc">tu rappelles avec le contexte, le prospect est déjà chaud</div></div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /inner-accord -->
+
+    </div>
+  </div>
+
+  <!-- ─── ACCORD 3 : SEO ─── -->
+  <div class="accord-item" id="a3">
+    <div class="accord-head" onclick="toggleAccord('a3')">
+      <div class="accord-left">
+        <div class="accord-num">03</div>
+        <div>
+          <div class="accord-title">Référencement SEO automatisé</div>
+          <div class="accord-sub">Remonte sur Google. Plus de calls entrants. Sans lever le petit doigt.</div>
+        </div>
+      </div>
+      <div class="accord-arrow">⌄</div>
+    </div>
+    <div class="accord-body">
+
+      <div class="one-line">Une IA entraînée sur ton entreprise rédige et publie des articles de blog sur ton site. Tu remontes dans les résultats Google. <strong>Plus de visibilité = plus d'appels entrants.</strong></div>
+
+      <div class="situation">
+        Tes concurrents publient régulièrement du contenu sur leur site. Google les récompense avec un meilleur classement. Résultat : ils apparaissent en premier quand quelqu'un cherche ton service dans ta région. Toi t'as pas le temps d'écrire des articles. <strong>Ce système le fait à ta place, automatiquement.</strong>
+      </div>
+
+      <div class="inner-accord">
+
+        <!-- Situation actuelle -->
+        <div class="inner-item" id="ia3">
+          <div class="inner-head" onclick="toggleInner('ia3')">
+            <div class="inner-head-left">
+              <span class="inner-label">Demande d'avis Google automatique</span>
+            </div>
+            <span class="inner-arrow">⌄</span>
+          </div>
+          <div class="inner-body">
+            <div class="one-line" style="margin-bottom:16px;">À la fin de chaque job, le système demande automatiquement un avis au client, <strong>et filtre les mauvais avant qu'ils arrivent sur Google.</strong></div>
+            <div class="situation">Tu sais que les avis Google sont importants, mais tu oublies souvent de demander. Notre système demande pour toi.<br><br><strong>+ d'avis Google = + de crédibilité = + de visibilité en ligne = + d'appels = + de contrats.</strong> C'est un effet boule de neige. Chaque mois ça grossit.</div>
+            <div class="steps-row">
+              <div class="step-card"><div class="step-icon">🔧</div><div class="step-num">Étape 01</div><strong>Job terminé</strong><div class="step-desc">Le job est fait. En deux clics tu marques le client comme terminé dans le système.</div></div>
+              <div class="step-card"><div class="step-icon">💬</div><div class="step-num">Étape 02</div><strong>Message automatique</strong><div class="step-desc">Le client reçoit un SMS avec un lien direct pour te laisser un avis Google.</div></div>
+              <div class="step-card"><div class="step-icon">🔍</div><div class="step-num">Étape 03</div><strong>Filtre intelligent</strong><div class="step-desc">Sur le lien, il indique combien d'étoiles il mettrait. 1 à 3 étoiles : l'avis reste privé, tu reçois une alerte. 4 à 5 étoiles : il est redirigé directement sur ta fiche Google.</div></div>
+              <div class="step-card"><div class="step-icon">⭐</div><div class="step-num">Étape 04</div><strong>Avis publié</strong><div class="step-desc">En un clic de sa part, l'avis est publié. Tu reçois plus d'avis 5 étoiles, sans jamais avoir à le demander toi-même.</div></div>
+            </div>
+            <div class="ba-grid">
+              <div class="ba-card before"><h4>Avant · Sans le système</h4><ul><li>Client content, aucun avis laissé</li><li>Ta fiche Google stagne depuis des mois</li><li>Un concurrent avec plus d'avis te passe devant</li><li>Les nouveaux clients le trouvent en premier</li></ul></div>
+              <div class="ba-card after"><h4>Après · Avec le système</h4><ul><li>Chaque job satisfait génère une demande d'avis automatique</li><li>Les mauvais avis restent privés</li><li>Ta note monte, ton classement Maps remonte</li><li>Plus d'appels entrants sans budget pub supplémentaire</li></ul></div>
+            </div>
+            <div class="metrics-row">
+              <div class="metric-card"><span class="metric-val">+ avis</span><div class="metric-desc">chaque job devient une opportunité d'avis 5 étoiles automatiquement</div></div>
+              <div class="metric-card"><span class="metric-val">0 bad review</span><div class="metric-desc">les avis négatifs sont filtrés avant d'arriver sur Google</div></div>
+              <div class="metric-card"><span class="metric-val">+ visibilité</span><div class="metric-desc">meilleur classement sur Google Maps = plus d'appels entrants chaque mois</div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nouveau : SEO IA -->
+        <div class="inner-item" id="ia4">
+          <div class="inner-head" onclick="toggleInner('ia4')">
+            <div class="inner-head-left">
+              <span class="inner-label">Automatisation du référencement SEO articles de blog IA</span>
+              <span class="inner-tag">Nouveau 🔥</span>
+            </div>
+            <span class="inner-arrow">⌄</span>
+          </div>
+          <div class="inner-body">
+            <p style="font-size:.88rem;color:var(--muted);margin-bottom:16px;">Une IA entraînée sur ton entreprise, ton secteur et ta région rédige des articles de blog optimisés pour Google. Ils sont publiés automatiquement sur ton site. Tu remontes dans les résultats de recherche. <strong style="color:var(--text)">Plus de calls entrants sans budget pub.</strong></p>
+            <div class="steps-row">
+              <div class="step-card"><div class="step-icon">🧠</div><div class="step-num">01</div><strong>IA entraînée sur toi</strong><div class="step-desc">L'IA apprend ton métier, ta région, tes services, ton ton. Tout ce qui te différencie.</div></div>
+              <div class="step-card"><div class="step-icon">✍️</div><div class="step-num">02</div><strong>Rédaction automatique</strong><div class="step-desc">Elle rédige des articles ciblés sur ce que tes clients cherchent sur Google dans ta région.</div></div>
+              <div class="step-card"><div class="step-icon">📤</div><div class="step-num">03</div><strong>Publication sur ton site</strong><div class="step-desc">Les articles sont publiés automatiquement sur ton blog. Régulièrement. Sans que t'aies rien à faire.</div></div>
+              <div class="step-card"><div class="step-icon">📈</div><div class="step-num">04</div><strong>Tu remontes sur Google</strong><div class="step-desc">Google voit ton site actif. Tu gagnes des positions. Plus de gens te trouvent. Plus d'appels entrants.</div></div>
+            </div>
+            <div class="ba-grid">
+              <div class="ba-card before">
+                <h4>Avant · Sans le système</h4>
+                <ul>
+                  <li>Site statique depuis des mois</li>
+                  <li>Tes concurrents publient et te passent devant</li>
+                  <li>T'apparais pas quand les clients cherchent</li>
+                  <li>Peu d'appels organiques</li>
+                </ul>
+              </div>
+              <div class="ba-card after">
+                <h4>Après · Avec le système</h4>
+                <ul>
+                  <li>Articles publiés toutes les semaines automatiquement</li>
+                  <li>Tu remontes dans les résultats Google</li>
+                  <li>Les clients te trouvent en cherchant ton service</li>
+                  <li>Appels entrants sans dépenser en pub</li>
+                </ul>
+              </div>
+            </div>
+            <div class="metrics-row">
+              <div class="metric-card"><span class="metric-val">0 effort</span><div class="metric-desc">aucun texte à rédiger de ta part</div></div>
+              <div class="metric-card"><span class="metric-val">+ trafic</span><div class="metric-desc">plus de visiteurs organiques sur ton site chaque mois</div></div>
+              <div class="metric-card"><span class="metric-val">+ appels</span><div class="metric-desc">de nouveaux clients qui te trouvent directement sur Google</div></div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /inner-accord -->
+    </div>
+  </div>
+
+  <!-- ─── ACCORD 4 : Suivi post-job ─── -->
+  <div class="accord-item" id="a4">
+    <div class="accord-head" onclick="toggleAccord('a4')">
+      <div class="accord-left">
+        <div class="accord-num">04</div>
+        <div>
+          <div class="accord-title">Suivi post-job automatique</div>
+          <div class="accord-sub">Bouche-à-oreille sur pilote automatique</div>
+        </div>
+      </div>
+      <div class="accord-arrow">⌄</div>
+    </div>
+    <div class="accord-body">
+
+      <div class="one-line">Après chaque job, le client reçoit une séquence automatique qui entretient la relation, génère du bouche-à-oreille et <strong>te garde dans sa tête pour la prochaine fois.</strong></div>
+
+      <div class="situation">
+        Le job est fini. T'as bien travaillé. Le client est content. Et là... plus rien. Zéro contact. Dans 6 mois, quand il aura besoin d'un entretien ou que son voisin cherche un contracteur, il aura oublié ton nom. Aucun concurrent reprend contact après un job. C'est là que t'as une longueur d'avance.<br><br>
+        <strong>Le client le plus facile à convertir, c'est celui qui t'a déjà fait confiance.</strong> Il suffit de rester présent.
+      </div>
+
+      <div class="steps-row">
+        <div class="step-card"><div class="step-icon">🔧</div><div class="step-num">Étape 01</div><strong>Job terminé</strong><div class="step-desc">Le job est fait. En deux clics le client est ajouté dans la séquence automatique.</div></div>
+        <div class="step-card"><div class="step-icon">💬</div><div class="step-num">Étape 02</div><strong>Message de suivi</strong><div class="step-desc">Quelques jours après, il reçoit un message pour s'assurer que tout se passe bien. Simple, humain, automatique.</div></div>
+        <div class="step-card"><div class="step-icon">💬</div><div class="step-num">Étape 03</div><strong>Entretien du lien</strong><div class="step-desc">Toutes les quelques semaines, il reçoit un message court pour garder le lien vivant. Simple, naturel, pas intrusif.</div></div>
+        <div class="step-card"><div class="step-icon">🎁</div><div class="step-num">Étape 04</div><strong>Offres ciblées</strong><div class="step-desc">De temps en temps, une offre personnalisée : "10% sur ton prochain entretien, valable aussi pour ton entourage." Des clients qui reviennent et qui référent.</div></div>
+      </div>
+
+      <div class="ba-grid">
+        <div class="ba-card before"><h4>Avant · Sans le système</h4><ul><li>Job fini, plus aucun contact avec le client</li><li>Il oublie ton nom en quelques mois</li><li>Il retourne sur Google pour trouver quelqu'un</li></ul></div>
+        <div class="ba-card after"><h4>Après · Avec le système</h4><ul><li>Le client reçoit un suivi automatique après le job</li><li>Quand il a à nouveau besoin, il t'appelle toi</li><li>Bouche-à-oreille actif sans que t'aies rien à faire</li></ul></div>
+      </div>
+
+      <div class="metrics-row">
+        <div class="metric-card"><span class="metric-val">+ fidélité</span><div class="metric-desc">tes clients reviennent vers toi au lieu de chercher ailleurs</div></div>
+        <div class="metric-card"><span class="metric-val">+ références</span><div class="metric-desc">chaque client satisfait devient une source de nouveaux prospects</div></div>
+        <div class="metric-card"><span class="metric-val">0 effort</span><div class="metric-desc">tout est automatique, tu touches à rien une fois que c'est en place</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── ACCORD 5 : Réactivation ─── -->
+  <div class="accord-item" id="a5">
+    <div class="accord-head" onclick="toggleAccord('a5')">
+      <div class="accord-left">
+        <div class="accord-num">05</div>
+        <div>
+          <div class="accord-title">Réactivation de ta base de contacts dormants</div>
+          <div class="accord-sub">Ta mine d'or la plus sous-estimée</div>
+        </div>
+      </div>
+      <div class="accord-arrow">⌄</div>
+    </div>
+    <div class="accord-body">
+
+      <div class="one-line">On relance automatiquement tous les contacts qui sont passés dans ton entreprise sans jamais convertir, <strong>sans budget pub, sans effort de ta part.</strong></div>
+
+      <div class="situation">
+        T'as des dizaines, peut-être des centaines de contacts dans ton téléphone. Des gens qui ont demandé un prix, des anciens clients que t'as perdu de vue, des leads qui t'ont dit "je te rappelle" et que t'as jamais suivi. Ces gens sont une mine d'or. Si t'as pas encore de liste comme ça, elle se construira au fil du temps avec nous.
+      </div>
+
+      <div class="steps-row">
+        <div class="step-card"><div class="step-icon">🗂️</div><div class="step-num">Étape 01</div><strong>On importe ta base</strong><div class="step-desc">Tu nous envoies ta liste de contacts, anciens clients, leads non convertis. On nettoie et on prépare la campagne.</div></div>
+        <div class="step-card"><div class="step-icon">💬</div><div class="step-num">Étape 02</div><strong>Message de relance</strong><div class="step-desc">Des messages SMS et emails naturels partent à chaque contact. Pas agressif. Juste un rappel que t'existes et que t'es disponible.</div></div>
+        <div class="step-card"><div class="step-icon">📋</div><div class="step-num">Étape 03</div><strong>Réponses capturées</strong><div class="step-desc">Ceux qui répondent sont qualifiés automatiquement. Tu reçois une notif avec le contexte complet.</div></div>
+        <div class="step-card"><div class="step-icon">📅</div><div class="step-num">Étape 04</div><strong>RDV ou rappel</strong><div class="step-desc">Le contact intéressé prend un RDV directement ou tu le rappelles avec toutes ses infos en main.</div></div>
+      </div>
+
+      <div class="ba-grid">
+        <div class="ba-card before"><h4>Avant · Sans le système</h4><ul><li>Des centaines de contacts qui dorment dans ton téléphone</li><li>Zéro relance, zéro suivi</li><li>Ces gens finissent par appeler un concurrent</li><li>Revenu potentiel qui dort sans rien te coûter</li></ul></div>
+        <div class="ba-card after"><h4>Après · Avec le système</h4><ul><li>Campagne de relance automatique sur toute ta base</li><li>Une partie de ces contacts redevient cliente</li><li>Des contrats récupérés sans un dollar de pub</li><li>Ta base de contacts travaille enfin pour toi</li></ul></div>
+      </div>
+
+      <div class="metrics-row">
+        <div class="metric-card"><span class="metric-val">Réactivé</span><div class="metric-desc">des contacts dormants qui redeviennent clients sans aucun effort</div></div>
+        <div class="metric-card"><span class="metric-val">0$ de pub</span><div class="metric-desc">des contrats récupérés sans budget publicitaire supplémentaire</div></div>
+        <div class="metric-card"><span class="metric-val">5 à 20%</span><div class="metric-desc">de taux de réponse positif en moyenne sur une base de contacts dormants</div></div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- CTA -->
+<section>
+  <hr class="divider">
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:18px;padding:50px 44px;">
+    <div class="section-label">À très vite</div>
+    <h2>À préparer avant<br>notre appel</h2>
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:36px;">
+      <div style="display:flex;flex-direction:column;gap:18px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <span style="font-size:1.2rem;flex-shrink:0;">📄</span>
+          <div><strong style="display:block;font-size:.95rem;margin-bottom:4px;">Lis bien ce document</strong><span style="font-size:.85rem;color:var(--muted);">Prends le temps de lire les automatisations présentées plus haut et réfléchis à ce qui pourrait t'intéresser dans ton contexte.</span></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <span style="font-size:1.2rem;flex-shrink:0;">🧠</span>
+          <div><strong style="display:block;font-size:.95rem;margin-bottom:4px;">Note tes idées d'automatisations</strong><span style="font-size:.85rem;color:var(--muted);">Réfléchis à tes tâches répétitives et chronophages les choses que tu fais souvent et qui te prennent du temps. Je pourrai te concevoir une solution sur-mesure pour chacune d'elles.</span></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <span style="font-size:1.2rem;flex-shrink:0;">📅</span>
+          <div><strong style="display:block;font-size:.95rem;margin-bottom:4px;">Note bien le rendez-vous dans ton calendrier</strong><span style="font-size:.85rem;color:var(--muted);">Pour qu'on soit le plus efficace possible lors de notre appel.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Lak<span>.</span></div>
+  <small>Systèmes d'automatisation IA sur-mesure pour entrepreneurs · Québec</small>
+</footer>
+
+<script>
+function toggleAccord(id) {
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.accord-item').forEach(a => a.classList.remove('open'));
+  if (!isOpen) {
+    el.classList.add('open');
+    setTimeout(() => {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  }
+}
+function toggleInner(id) {
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  const parent = el.closest('.inner-accord');
+  parent.querySelectorAll('.inner-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) {
+    el.classList.add('open');
+    setTimeout(() => {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  }
+}
+
+function calcQuotes() {
+  const leads = parseFloat(document.getElementById('numLeads').value) || 0;
+  const val   = parseFloat(document.getElementById('avgValue').value)  || 0;
+  const conv  = parseFloat(document.getElementById('convRate').value)  || 0;
+
+  const leadsPerMonth = leads * 4.33;
+  const lostLeads     = Math.round(leadsPerMonth);
+  const lostRevenue   = Math.round(lostLeads * val * (conv / 100));
+  const lostYear      = lostRevenue * 12;
+
+  document.getElementById('r1').textContent = lostLeads;
+  document.getElementById('r2').textContent = lostRevenue.toLocaleString('fr-CA') + ' $';
+  document.getElementById('r3').textContent = lostYear.toLocaleString('fr-CA') + ' $';
+
+  document.getElementById('calcResults').classList.add('show');
+  document.getElementById('calcNote').textContent = 'Chiffres indicatifs basés sur tes appels manqués.';
+}
+</script>
+</body>
+</html>
