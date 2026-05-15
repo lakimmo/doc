@@ -1,0 +1,2090 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lak. · Entrepreneurs spécialisés Québec</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Montserrat:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* ── HERO WHITE (ref doc style) ────────────────── */
+  .hero-shell {
+    background: #fff;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .hero-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 48px;
+  }
+
+  .hero-nav-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: #1a1a1a;
+    letter-spacing: -0.03em;
+  }
+
+  .hero-nav-logo span { color: #f15a24; }
+
+  .hero-nav-tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #999;
+    border: 1px solid rgba(0,0,0,0.12);
+    border-radius: 100px;
+    padding: 7px 16px;
+  }
+
+  .hero-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 48px 80px;
+  }
+
+  .hero-eyebrow {
+    display: none; /* hidden in white version */
+  }
+
+  .hero-h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 7vw, 90px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #1a1a1a;
+    margin-bottom: 36px;
+    max-width: 900px;
+  }
+
+  .hero-h1 .line { display: block; overflow: hidden; }
+
+  .hero-h1 .line span {
+    display: block;
+    opacity: 0;
+    transform: translateY(100%);
+  }
+
+  .hero-h1 .line:nth-child(1) span { animation: slideUp 0.7s 0.1s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .hero-h1 .line:nth-child(2) span { animation: slideUp 0.7s 0.22s cubic-bezier(0.22,1,0.36,1) forwards; }
+  .hero-h1 .line:nth-child(3) span { animation: slideUp 0.7s 0.34s cubic-bezier(0.22,1,0.36,1) forwards; }
+
+  @keyframes slideUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-h1 .orange {
+    color: #f15a24;
+    font-style: italic;
+  }
+
+  .hero-divider-line { display: none; }
+
+  .hero-sub {
+    font-size: clamp(15px, 1.8vw, 18px);
+    color: #666;
+    max-width: 620px;
+    line-height: 1.7;
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: hFadeUp 0.8s 0.5s ease forwards;
+  }
+
+  .hero-sub strong { color: #1a1a1a; font-weight: 600; }
+
+  .hero-ctas {
+    opacity: 0;
+    animation: hFadeUp 0.8s 0.65s ease forwards;
+  }
+
+  .hero-cta-primary { display: none; }
+
+  .hero-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: rgba(241,90,36,0.08);
+    border: 1px solid rgba(241,90,36,0.2);
+    border-radius: 100px;
+    padding: 9px 18px;
+    font-size: 13px;
+    color: #f15a24;
+    font-weight: 500;
+  }
+
+  .hero-cta-secondary svg { flex-shrink: 0; color: #f15a24; }
+
+  .hero-stats-bar { display: none; }
+
+  @keyframes hFadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 680px) {
+    .hero-nav { padding: 20px 24px; }
+    .hero-inner { padding: 40px 24px 60px; }
+  }
+</style>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --orange: #f15a24;
+    --orange-dim: rgba(241,90,36,0.08);
+    --bg: #ffffff;
+    --surface: #f7f6f4;
+    --surface2: #efefed;
+    --border: rgba(0,0,0,0.08);
+    --border2: rgba(0,0,0,0.12);
+    --text: #1a1a1a;
+    --muted: #888;
+    --muted2: #bbb;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ──────────────────────────────────────── */
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 48px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .nav-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: var(--text);
+    letter-spacing: -0.03em;
+  }
+
+  .nav-logo span { color: var(--orange); }
+
+  .nav-badge {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #999;
+    border: 1px solid var(--border2);
+    border-radius: 100px;
+    padding: 7px 16px;
+  }
+
+  /* ── HERO ─────────────────────────────────────── */
+  .hero {
+    min-height: calc(100vh - 90px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 48px 80px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 8vw, 100px);
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.1s ease forwards;
+  }
+
+  .hero-title .italic-accent {
+    font-style: italic;
+    color: var(--orange);
+  }
+
+  .hero-sub {
+    font-size: clamp(15px, 1.8vw, 18px);
+    color: #666;
+    max-width: 620px;
+    line-height: 1.7;
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.28s ease forwards;
+  }
+
+  .hero-sub strong { color: var(--text); font-weight: 600; }
+
+  .hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--orange-dim);
+    border: 1px solid rgba(241,90,36,0.2);
+    border-radius: 100px;
+    padding: 9px 18px;
+    font-size: 13px;
+    color: var(--orange);
+    font-weight: 500;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.44s ease forwards;
+  }
+
+  .hero-pill svg { flex-shrink: 0; }
+
+  .hero-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+  }
+
+  .section-intro-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 0;
+  }
+
+  .intro-line {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 40px 48px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .intro-line-hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid var(--border2);
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── LAYOUT ───────────────────────────────────── */
+  .section {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 80px 48px;
+  }
+
+  .section-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 4vw, 48px);
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+    color: var(--text);
+  }
+
+  p {
+    color: #555;
+    margin-bottom: 16px;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  p strong { color: var(--text); font-weight: 600; }
+
+  hr.sep {
+    border: none;
+    border-top: 1px solid var(--border);
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  /* ── STAT ROW ─────────────────────────────────── */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 48px 0;
+  }
+
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--orange), transparent);
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 46px);
+    font-weight: 700;
+    color: var(--orange);
+    display: block;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* ── PROBLEM CARDS ────────────────────────────── */
+  .problem-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 40px 0;
+  }
+
+  .problem-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--orange);
+    border-radius: 12px;
+    padding: 20px 22px;
+  }
+
+  .problem-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .problem-text { flex: 1; }
+
+  .problem-text strong {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .problem-text span {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.6;
+  }
+
+  /* ── CALCULATOR ───────────────────────────────── */
+  .calc-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px 36px;
+    margin: 40px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .calc-wrap::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--orange) 40%, transparent);
+  }
+
+  .calc-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+
+  .calc-subtitle {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+
+  .calc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 28px;
+  }
+
+  .calc-field label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #777;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+  }
+
+  .calc-field input {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border2);
+    border-radius: 12px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    padding: 16px 20px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -moz-appearance: textfield;
+  }
+
+  .calc-field input::-webkit-outer-spin-button,
+  .calc-field input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+  .calc-field input:focus {
+    border-color: var(--orange);
+    box-shadow: 0 0 0 3px rgba(241,90,36,0.1);
+  }
+
+  .calc-field .hint {
+    font-size: 11px;
+    color: var(--muted2);
+    margin-top: 7px;
+    line-height: 1.4;
+  }
+
+  .calc-btn {
+    width: 100%;
+    background: var(--orange);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+  }
+
+  .calc-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+  .calc-btn:active { transform: translateY(0); }
+
+  .calc-result {
+    display: none;
+    margin-top: 28px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+  }
+
+  .calc-result.show { display: block; }
+
+  .result-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  .result-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 14px;
+    text-align: center;
+  }
+
+  .result-box.highlight {
+    background: var(--orange-dim);
+    border-color: rgba(241,90,36,0.25);
+  }
+
+  .result-box .rval {
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(20px, 2.5vw, 26px);
+    font-weight: 700;
+    color: var(--orange);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .result-box .rlabel {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .result-note {
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* ── SYSTEMS ──────────────────────────────────── */
+  .systems-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .systems-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .system-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .system-card:hover { border-color: rgba(241,90,36,0.25); }
+
+  .system-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 22px 26px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .system-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    color: var(--orange);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    width: 28px;
+    flex-shrink: 0;
+  }
+
+  .system-title-wrap { flex: 1; }
+
+  .system-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+
+  .system-tagline {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .system-chevron {
+    color: var(--muted2);
+    font-size: 20px;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .system-card.open .system-chevron { transform: rotate(180deg); }
+  .system-card.open { border-color: rgba(241,90,36,0.3); box-shadow: 0 4px 24px rgba(241,90,36,0.06); }
+
+  .system-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .system-inner {
+    padding: 0 26px 26px;
+    border-top: 1px solid var(--border);
+    padding-top: 22px;
+  }
+
+  .system-inner p { font-size: 15px; color: #666; }
+
+  .option-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin: 14px 0;
+  }
+
+  .option-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--orange);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+  }
+
+  .option-block p { font-size: 14px; color: #777; margin: 0; }
+
+  .result-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--orange-dim);
+    border: 1px solid rgba(241,90,36,0.2);
+    border-radius: 8px;
+    padding: 8px 14px;
+    margin-top: 14px;
+  }
+
+  .result-pill .check { color: var(--orange); font-size: 14px; }
+  .result-pill span { font-size: 13px; color: var(--text); font-weight: 500; }
+
+  /* ── SYSTEM DETAIL SECTIONS ───────────────────── */
+  .sys-section {
+    margin: 24px 0 0;
+  }
+
+  .sys-section-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sys-phrase {
+    font-size: 15px;
+    color: var(--text);
+    font-weight: 500;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .sys-phrase strong { color: var(--orange); font-weight: 700; }
+
+  .sys-situation {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.7;
+    margin: 0 0 12px;
+  }
+
+  .sys-callout {
+    background: var(--surface);
+    border-left: 3px solid var(--orange);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 16px;
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .sys-callout strong { color: var(--text); }
+
+  /* Steps flow */
+  .steps-flow {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .step-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    position: relative;
+  }
+
+  .step-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    color: var(--orange);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .step-icon { font-size: 20px; margin-bottom: 8px; display: block; }
+
+  .step-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .step-desc {
+    font-size: 12px;
+    color: #777;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .step-arrow {
+    position: absolute;
+    top: 50%;
+    right: -8px;
+    transform: translateY(-50%);
+    color: var(--muted2);
+    font-size: 12px;
+    z-index: 1;
+  }
+
+  /* Avant / Après */
+  .avant-apres {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .aa-col {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .aa-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .aa-col.avant .aa-header { background: #fff0f0; color: #cc3333; }
+  .aa-col.apres .aa-header { background: #f0fff4; color: #1a7a3a; }
+
+  .aa-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .avant .aa-dot { background: #cc3333; }
+  .apres .aa-dot { background: #1a7a3a; }
+
+  .aa-sub {
+    font-size: 10px;
+    font-weight: 400;
+    opacity: 0.7;
+    margin-left: auto;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .aa-body { padding: 14px; background: var(--surface); }
+
+  .aa-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: #555;
+    line-height: 1.4;
+  }
+
+  .aa-item:last-child { margin-bottom: 0; }
+
+  .aa-item .aa-ico { flex-shrink: 0; font-size: 14px; margin-top: 1px; }
+
+  /* Ce que ça change */
+  .change-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .change-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 14px;
+    text-align: center;
+  }
+
+  .change-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+
+  .change-val {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 900;
+    color: var(--orange);
+    display: block;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+
+  .change-label {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* Infos pratiques */
+  .infos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .info-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+
+  .info-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  .info-val {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  @media (max-width: 680px) {
+    .steps-flow { grid-template-columns: 1fr; }
+    .step-arrow { display: none; }
+    .avant-apres { grid-template-columns: 1fr; }
+    .change-grid { grid-template-columns: 1fr; }
+    .infos-grid { grid-template-columns: 1fr; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: rotate(3deg) translateY(0); }
+    50% { transform: rotate(3deg) translateY(-8px); }
+  }
+
+  /* ── SUB-ACCORDIONS ───────────────────────────── */
+  .sub-options-intro {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  .sub-options-intro strong { color: var(--text); }
+
+  .sub-accordion {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    transition: border-color 0.2s;
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+
+  .sub-accordion:last-child { margin-bottom: 0; }
+  .sub-accordion.open { border-color: rgba(241,90,36,0.35); }
+
+  .sub-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px 18px;
+    cursor: pointer;
+    user-select: none;
+    background: var(--surface);
+  }
+
+  .sub-badge {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--orange);
+    border-radius: 6px;
+    padding: 4px 9px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .sub-badge.secondary {
+    background: #1a1a1a;
+  }
+
+  .sub-title-wrap { flex: 1; }
+
+  .sub-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .sub-tagline {
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .sub-chevron {
+    color: var(--muted2);
+    font-size: 18px;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .sub-accordion.open .sub-chevron { transform: rotate(180deg); }
+
+  .sub-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .sub-inner {
+    padding: 20px 18px 22px;
+    border-top: 1px solid var(--border);
+    background: #fff;
+  }
+
+  /* ── MODEL ECO ────────────────────────────────── */
+  .model-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .model-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--orange) 40%, transparent);
+  }
+
+  .model-block h2 { margin-bottom: 16px; }
+
+  /* ── CTA ──────────────────────────────────────── */
+  .cta-section {
+    text-align: center;
+    padding: 100px 48px;
+    max-width: 820px;
+    margin: 0 auto;
+  }
+
+  .cta-section h2 {
+    font-size: clamp(32px, 5vw, 52px);
+    margin-bottom: 18px;
+  }
+
+  .cta-section p {
+    font-size: 16px;
+    color: #888;
+    margin-bottom: 40px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--orange);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    padding: 20px 52px;
+    border-radius: 12px;
+    transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+    text-transform: uppercase;
+    box-shadow: 0 8px 32px rgba(241,90,36,0.25);
+  }
+
+  .cta-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 16px 48px rgba(241,90,36,0.35);
+  }
+
+  .cta-note {
+    display: block;
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* ── FOOTER ───────────────────────────────────── */
+  footer {
+    text-align: center;
+    padding: 32px 24px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted2);
+  }
+
+  footer .logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    color: var(--text);
+    letter-spacing: -0.03em;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+
+  footer .logo span { color: var(--orange); }
+
+  /* ── RESPONSIVE ───────────────────────────────── */
+  @media (max-width: 680px) {
+    .nav { padding: 20px 24px; }
+    .hero { padding: 40px 24px 60px; }
+    .section { padding: 60px 24px; }
+    .intro-line { padding: 32px 24px; }
+    .stat-row { grid-template-columns: 1fr; gap: 12px; }
+    .calc-grid { grid-template-columns: 1fr; }
+    .result-grid { grid-template-columns: 1fr; }
+    .model-block, .calc-wrap { padding: 24px 20px; }
+    .system-header { padding: 18px 20px; }
+    .system-inner { padding: 0 20px 22px; padding-top: 20px; }
+    .cta-section { padding: 80px 24px; }
+    [style*="animation: float"] { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════ HERO SHELL -->
+<div class="hero-shell">
+
+  <nav class="hero-nav">
+    <div class="hero-nav-logo">Lak<span>.</span></div>
+    <div style="text-align: right;">
+      <div class="hero-nav-tag">🖥️ À lire sur PC</div>
+      <p style="font-style: italic; font-size: 11px; color: #bbb; margin: 4px 0 0;">Recommandation</p>
+    </div>
+  </nav>
+
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      <div class="hero-eyebrow-text">Systèmes d'automatisation · Québec</div>
+    </div>
+
+    <h1 class="hero-h1">
+      <span class="line"><span>Paye par job apporté.</span></span>
+      <span class="line"><span><span class="orange">Pas par espoir.</span></span></span>
+    </h1>
+
+    <div class="hero-divider-line"></div>
+
+    <p class="hero-sub">
+    On installe un système qui remplit ton calendrier sans plus de budget pub, payé à la performance. Il capture 100% de tes leads entrants, les suit automatiquement, et réactive tes anciens clients que t'as perdus de vue. Pas de résultat, pas de facture.
+  </p>
+
+    <div class="hero-ctas">
+      <a href="https://api.lak-agency.com/widget/bookings/demo-call-lak-agency" class="hero-cta-primary">
+        Réserver un appel avec Adam
+        <span class="hero-cta-arrow">→</span>
+      </a>
+      <div class="hero-cta-secondary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        5 minutes de lecture
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-stats-bar">
+    <div class="hero-stat">
+      <span class="hero-stat-num"><span class="orange">37</span> leads</span>
+      <div class="hero-stat-label">perdus chaque mois en moyenne sur les appels manqués</div>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num"><span class="orange">2 000$</span></span>
+      <div class="hero-stat-label">valeur moyenne d'un job au Québec</div>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num"><span class="orange">74 000$</span></span>
+      <div class="hero-stat-label">de revenu potentiel qui disparaît chaque mois sans système</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════ TICKER -->
+<div style="background: #f15a24; overflow: hidden; padding: 12px 0; white-space: nowrap;">
+  <div style="display: inline-flex; animation: ticker 20s linear infinite; gap: 0;">
+    <div style="display: inline-flex; align-items: center; gap: 40px; padding-right: 60px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 800; color: #fff; letter-spacing: 0.08em; text-transform: uppercase;">
+      <span>✓ Payé par RDV</span>
+      <span style="opacity:0.4;">·</span>
+      <span>✓ Zéro fixe mensuel</span>
+      <span style="opacity:0.4;">·</span>
+      <span>✓ Clé en main</span>
+      <span style="opacity:0.4;">·</span>
+      <span>✓ Zéro risque</span>
+      <span style="opacity:0.4;">·</span>
+      <span>✓ Rémunéré à la performance</span>
+      <span style="opacity:0.4;">·</span>
+      <span>✓ Livré en 7 jours</span>
+      <span style="opacity:0.4;">·</span>
+      <span>✓ Payé par RDV</span>
+      <span style="opacity:0.4;">·</span>
+      <span>✓ Zéro fixe mensuel</span>
+      <span style="opacity:0.4;">·</span>
+      <span>✓ Clé en main</span>
+      <span style="opacity:0.4;">·</span>
+      <span>✓ Zéro risque</span>
+      <span style="opacity:0.4;">·</span>
+      <span>✓ Rémunéré à la performance</span>
+      <span style="opacity:0.4;">·</span>
+    </div>
+  </div>
+</div>
+
+<style>
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+</style>
+
+<!-- ═══════════════════════════════════════════ SOCIAL PROOF -->
+<div style="border-top: 1px solid rgba(0,0,0,0.07); border-bottom: 1px solid rgba(0,0,0,0.07); padding: 16px 24px; display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap;">
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <div style="display: flex;">
+      <div style="width: 32px; height: 32px; border-radius: 50%; background: #e8e0d8; border: 2px solid #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; margin-right: -8px;">👷</div>
+      <div style="width: 32px; height: 32px; border-radius: 50%; background: #dde8e0; border: 2px solid #fff; display: flex; align-items: center; justify-content: center; font-size: 13px; margin-right: -8px;">🔧</div>
+      <div style="width: 32px; height: 32px; border-radius: 50%; background: #e0e4f0; border: 2px solid #fff; display: flex; align-items: center; justify-content: center; font-size: 13px;">⚡</div>
+    </div>
+  </div>
+  <div class="sp-divider" style="width: 1px; height: 28px; background: rgba(0,0,0,0.1);"></div>
+  <div style="display: flex; align-items: center; gap: 8px;">
+    <span style="color: #f15a24; font-size: 14px; white-space: nowrap;">★★★★★</span>
+    <span style="font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: #1a1a1a; white-space: nowrap;">Rémunéré à la performance</span>
+  </div>
+</div>
+<style>
+  @media (max-width: 480px) {
+    .sp-divider { display: none; }
+  }
+</style>
+
+<!-- ═══════════════════════════════════════════ PROBLÈME -->
+<section class="section">
+  <div class="section-label">Le problème</div>
+  <h2>T'as pas un problème de leads. T'as un problème de fuites.</h2>
+  <p>
+    Avant de vouloir remplir le seau, assure-toi qu'il a pas de trou. La plupart des contracteurs en construction pensent que leur problème c'est le manque de leads. Alors ils investissent en pub Facebook, en Google Ads, en SEO. Ils rajoutent de l'eau dans le seau. Mais le seau est percé.
+  </p>
+  <p>
+    Un appel manqué, c'est un lead qui disparaît. Un client satisfait à qui on demande jamais d'avis, c'est une opportunité perdue. Un ancien client ou prospect pas relancé depuis 8 mois, c'est de l'argent qui dort.
+  </p>
+  <p>
+    T'as pas besoin de plus de trafic. T'as besoin de rien perdre de ce que t'as déjà. Le système qu'on installe s'assure que chaque lead qui rentre dans ton entreprise est capturé, suivi et relancé, automatiquement, sans que t'aies à y penser.
+  </p>
+
+  <div class="problem-list">
+    <div class="problem-item">
+      <div class="problem-icon">📞</div>
+      <div class="problem-text">
+        <strong>Les appels manqués</strong>
+        <span>Un appel sans réponse, c'est un prospect qui appelle ton concurrent. Contrat perdu.</span>
+      </div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-icon">💤</div>
+      <div class="problem-text">
+        <strong>Les anciens clients et prospects oubliés</strong>
+        <span>Des anciens clients que t'as déjà servis, des prospects qui ont demandé un prix et jamais rappelés. Ces gens te connaissent déjà. Il suffit de reprendre contact pour qu'une bonne partie revienne.</span>
+      </div>
+    </div>
+    <div class="problem-item">
+      <div class="problem-icon">⭐</div>
+      <div class="problem-text">
+        <strong>Les clients satisfaits qui laissent pas d'avis</strong>
+        <span>Ton client est content mais personne lui a jamais demandé d'avis. Pourtant : + d'avis Google = + de crédibilité = + de visibilité en ligne = + d'appels = + de contrats.</span>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+
+<!-- ═══════════════════════════════════════════ CALCULATEUR -->
+<hr class="sep">
+<section class="section">
+  <div class="section-label">Calcule tes pertes</div>
+  <h2>Combien tu laisses partir chaque mois?</h2>
+  <p>Entre tes chiffres. On te montre exactement ce que ça représente.</p>
+
+  <div class="calc-wrap">
+    <div class="calc-title">Calcule ce que tu laisses partir chaque mois</div>
+    <div class="calc-subtitle">Chiffres indicatifs, peuvent varier selon ton activité</div>
+
+    <div class="calc-grid">
+      <div class="calc-field">
+        <label>Appels manqués par semaine</label>
+        <input type="number" id="missedCalls" placeholder="10" min="0">
+        <div class="hint">Inclut les appels auxquels t'as pas répondu ou rappelé trop tard</div>
+      </div>
+      <div class="calc-field">
+        <label>Valeur moyenne d'un job ($)</label>
+        <input type="number" id="jobValue" placeholder="1000" min="0">
+        <div class="hint">Moyenne de tes contrats (installation, remplacement, entretien...)</div>
+      </div>
+      <div class="calc-field" style="grid-column: 1 / -1;">
+        <label>Taux de conversion (%)</label>
+        <input type="number" id="convRate" placeholder="50" min="0" max="100">
+        <div class="hint">Sur 100 personnes qui appellent, combien deviennent clients?</div>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calculateLoss()">Calculer mes pertes →</button>
+
+    <div class="calc-result" id="calcResult">
+      <div class="result-grid">
+        <div class="result-box">
+          <span class="rval" id="rLeads">—</span>
+          <span class="rlabel">opportunités manquées par mois</span>
+        </div>
+        <div class="result-box">
+          <span class="rval" id="rMissed">—</span>
+          <span class="rlabel">revenus potentiels perdus / mois</span>
+        </div>
+        <div class="result-box highlight">
+          <span class="rval" id="rAnnual">—</span>
+          <span class="rlabel">revenus potentiels perdus / an</span>
+        </div>
+      </div>
+      <div style="background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--orange); border-radius: 10px; padding: 16px 20px; margin-bottom: 12px;">
+        <p style="font-size: 14px; color: #555; margin: 0; line-height: 1.6;">
+          <strong style="color: var(--text);">Et ce chiffre ne prend même pas en compte...</strong> les revenus dormants dans ta base d'anciens clients, ni les leads qui t'ont contacté et que t'as jamais relancés.
+        </p>
+      </div>
+      <div class="result-note">Chiffres indicatifs, peuvent varier selon ton activité.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ SYSTÈMES -->
+<hr class="sep">
+<section class="section" style="max-width: 1100px;">
+  <div class="systems-header" style="position: relative;">
+    <div class="section-label" style="text-align:center;">Les 4 systèmes</div>
+    <h2 style="text-align:center;">Ce qu'on installe dans ton entreprise</h2>
+    <p style="text-align:center; max-width: 580px; margin: 0 auto 48px;">Voici les systèmes qui permettent de récupérer une partie des pertes calculées plus haut. Clé en main et sur-mesure.</p>
+
+    <!-- FLOATING BADGE -->
+    <div style="position: absolute; top: 0; right: 0; background: #f15a24; color: #fff; font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 16px; border-radius: 12px; transform: rotate(3deg); box-shadow: 0 4px 20px rgba(241,90,36,0.4); animation: float 3s ease-in-out infinite; line-height: 1.4; text-align: center; display: block;">
+      Rémunéré<br>à la perfo 🔥
+    </div>
+  </div>
+
+  <div class="systems-grid">
+
+    <!-- SYSTÈME 1 -->
+    <div class="system-card" id="sys1">
+      <div class="system-header" onclick="toggleSystem('sys1')">
+        <div class="system-num">01</div>
+        <div class="system-title-wrap">
+          <div class="system-title">Réponse immédiate aux appels manqués</div>
+          <div class="system-tagline">Zéro lead perdu, même à 23h un dimanche</div>
+        </div>
+        <div class="system-chevron">⌄</div>
+      </div>
+      <div class="system-body">
+        <div class="system-inner">
+
+          <!-- INTRO -->
+          <div class="sys-section">
+            <div class="sys-section-label">Situation actuelle</div>
+            <p class="sys-situation">T'es sur un chantier, il est tard, ou c'est dimanche. Le téléphone sonne. Tu peux pas répondre. Le prospect attend 30 secondes, raccroche, et compose le numéro d'après. Dans 80% des cas, le premier contracteur à répondre obtient le contrat.</p>
+            <p class="sys-callout"><strong>Chaque appel sans réponse = un contrat qui part chez un concurrent.</strong> Pas parce que t'es moins bon. Juste parce qu'il a répondu en premier.</p>
+          </div>
+
+          <!-- DEUX SOLUTIONS -->
+          <div class="sys-section">
+            <div class="sys-section-label">Deux solutions existent</div>
+            <p class="sub-options-intro">On t'installe <strong>l'une ou l'autre selon ta préférence</strong>, les deux ont le même objectif : qu'aucun prospect n'attende sans réponse.</p>
+            <div class="sub-accordion" id="sub1a">
+              <div class="sub-header" onclick="toggleSub('sub1a')">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <div class="sub-badge">Plus simple</div>
+                  <div class="sub-chevron">⌄</div>
+                </div>
+                <div class="sub-title-wrap">
+                  <div class="sub-title">SMS automatique de qualification</div>
+                  <div class="sub-tagline">Réponse texte en moins de 10 secondes après l'appel manqué</div>
+                </div>
+              </div>
+              <div class="sub-body">
+                <div class="sub-inner">
+
+                  <div class="sys-section" style="margin-top:0;">
+                    <div class="sys-section-label">En une phrase</div>
+                    <p class="sys-phrase">Dès que tu rates un appel, le prospect reçoit un SMS avec ton nom en moins de 10 secondes, <strong>il sait que t'as vu son appel et que tu vas le rappeler.</strong></p>
+                  </div>
+
+                  <div class="sys-section">
+                    <div class="sys-section-label">Comment ça fonctionne</div>
+                    <div class="steps-flow">
+                      <div class="step-card">
+                        <div class="step-num">Étape 01</div>
+                        <span class="step-icon">📞</span>
+                        <div class="step-title">Appel manqué</div>
+                        <p class="step-desc">Tu rates un appel. Le système le détecte instantanément.</p>
+                        <span class="step-arrow">›</span>
+                      </div>
+                      <div class="step-card">
+                        <div class="step-num">Étape 02</div>
+                        <span class="step-icon">💬</span>
+                        <div class="step-title">SMS en 10 sec</div>
+                        <p class="step-desc">Le prospect reçoit un message automatique lui disant que tu vas le rappeler dès que possible et qu'en attendant il peut expliquer sa situation ici : [LIEN].</p>
+                        <span class="step-arrow">›</span>
+                      </div>
+                      <div class="step-card">
+                        <div class="step-num">Étape 03</div>
+                        <span class="step-icon">📋</span>
+                        <div class="step-title">Formulaire de qualification</div>
+                        <p class="step-desc">Il clique sur le lien, explique sa situation et peut prendre un RDV directement, qui apparaît aussitôt dans ton calendrier.</p>
+                        <span class="step-arrow">›</span>
+                      </div>
+                      <div class="step-card">
+                        <div class="step-num">Étape 04</div>
+                        <span class="step-icon">✅</span>
+                        <div class="step-title">RDV dans ton calendrier</div>
+                        <p class="step-desc">Quand tu rappelles ou que le RDV arrive, t'as déjà son problème, ses infos et le contexte complet.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="sys-section">
+                    <div class="sys-section-label">Avant / Après</div>
+                    <div class="avant-apres">
+                      <div class="aa-col avant">
+                        <div class="aa-header"><span class="aa-dot"></span> Avant <span class="aa-sub">Sans le système</span></div>
+                        <div class="aa-body">
+                          <div class="aa-item"><span class="aa-ico">❌</span>Appel manqué = job raté</div>
+                          <div class="aa-item"><span class="aa-ico">❌</span>Aucune réponse, le prospect appelle ailleurs</div>
+                          <div class="aa-item"><span class="aa-ico">❌</span>Tu rappelles dans le vide 2h plus tard</div>
+                        </div>
+                      </div>
+                      <div class="aa-col apres">
+                        <div class="aa-header"><span class="aa-dot"></span> Après <span class="aa-sub">Avec le système</span></div>
+                        <div class="aa-body">
+                          <div class="aa-item"><span class="aa-ico">✅</span>T'as manqué l'appel, mais en automatique le prospect a été capté</div>
+                          <div class="aa-item"><span class="aa-ico">✅</span>Il a expliqué sa situation et pris un RDV</div>
+                          <div class="aa-item"><span class="aa-ico">✅</span>Ce qui aurait été un job raté devient un contrat</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="sys-section">
+                    <div class="sys-section-label">Ce que ça change concrètement</div>
+                    <div class="change-grid">
+                      <div class="change-card">
+                        <span class="change-icon">⚡</span>
+                        <span class="change-val">&lt; 10 sec</span>
+                        <div class="change-label">délai de réponse après chaque appel manqué</div>
+                      </div>
+                      <div class="change-card">
+                        <span class="change-icon">🔒</span>
+                        <span class="change-val">100%</span>
+                        <div class="change-label">des prospects reçoivent une réponse, même à 23h ou le dimanche</div>
+                      </div>
+                      <div class="change-card">
+                        <span class="change-icon">📈</span>
+                        <span class="change-val">+ conversion</span>
+                        <div class="change-label">tu rappelles avec le contexte, le prospect est déjà chaud</div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            <!-- SUB 2 : IA VOCALE -->
+            <div class="sub-accordion" id="sub1b">
+              <div class="sub-header" onclick="toggleSub('sub1b')">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <div class="sub-badge secondary">Plus efficace</div>
+                  <div class="sub-chevron">⌄</div>
+                </div>
+                <div class="sub-title-wrap">
+                  <div class="sub-title">Assistant vocal IA entraîné sur ton activité</div>
+                  <div class="sub-tagline">Répond au téléphone à ta place, qualifie et convertit vers un RDV</div>
+                </div>
+              </div>
+              <div class="sub-body">
+                <div class="sub-inner">
+
+                  <div class="sys-section" style="margin-top:0;">
+                    <div class="sys-section-label">En une phrase</div>
+                    <p class="sys-phrase">Un assistant IA entraîné sur ton activité répond à ta place, parle au prospect en temps réel, qualifie son besoin et <strong>booké un rendez-vous directement dans ton calendrier.</strong></p>
+                  </div>
+
+                  <div class="sys-section">
+                    <div class="sys-section-label">Situation actuelle</div>
+                    <p class="sys-situation">Le meilleur moyen de convertir un prospect qui appelle, c'est qu'il ait quelqu'un au bout du fil immédiatement. Un assistant IA qui décroche à ta place, parle au prospect en temps réel, comprend son besoin et l'oriente vers un RDV ou te transmet ses infos directement.</p>
+                    <p class="sys-callout"><strong>L'IA ne remplace pas ton expertise terrain.</strong> Elle fait juste s'assurer que le prospect ne raccroche jamais sans réponse. Il a un RDV confirmé avant de raccrocher.</p>
+                  </div>
+
+                  <div class="sys-section">
+                    <div class="sys-section-label">Comment ça fonctionne</div>
+                    <div class="steps-flow">
+                      <div class="step-card">
+                        <div class="step-num">Étape 01</div>
+                        <span class="step-icon">📞</span>
+                        <div class="step-title">Appel entrant</div>
+                        <p class="step-desc">Tu peux pas répondre. L'IA décroche en moins de 3 secondes.</p>
+                        <span class="step-arrow">›</span>
+                      </div>
+                      <div class="step-card">
+                        <div class="step-num">Étape 02</div>
+                        <span class="step-icon">🤖</span>
+                        <div class="step-title">Conversation naturelle</div>
+                        <p class="step-desc">L'IA se présente comme ton assistante, discute avec le prospect et comprend son besoin.</p>
+                        <span class="step-arrow">›</span>
+                      </div>
+                      <div class="step-card">
+                        <div class="step-num">Étape 03</div>
+                        <span class="step-icon">📅</span>
+                        <div class="step-title">S'adapte au besoin</div>
+                        <p class="step-desc">Si c'est un nouveau prospect : l'IA propose un créneau directement dans ton calendrier et confirme le RDV en direct.</p>
+                        <span class="step-arrow">›</span>
+                      </div>
+                      <div class="step-card">
+                        <div class="step-num">Étape 04</div>
+                        <span class="step-icon">🔔</span>
+                        <div class="step-title">Tu reçois tout</div>
+                        <p class="step-desc">Si c'est une demande spécifique : l'IA prend les infos et te les envoie directement pour que tu aies tout en main avant de rappeler.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="sys-section">
+                    <div class="sys-section-label">Avant / Après</div>
+                    <div class="avant-apres">
+                      <div class="aa-col avant">
+                        <div class="aa-header"><span class="aa-dot"></span> Avant <span class="aa-sub">Sans le système</span></div>
+                        <div class="aa-body">
+                          <div class="aa-item"><span class="aa-ico">❌</span>Téléphone sonne dans le vide</div>
+                          <div class="aa-item"><span class="aa-ico">❌</span>Le prospect tombe sur un voicemail et raccroche</div>
+                          <div class="aa-item"><span class="aa-ico">❌</span>Zéro RDV, zéro contrat</div>
+                          <div class="aa-item"><span class="aa-ico">❌</span>T'as même pas su qui avait appelé</div>
+                        </div>
+                      </div>
+                      <div class="aa-col apres">
+                        <div class="aa-header"><span class="aa-dot"></span> Après <span class="aa-sub">Avec le système</span></div>
+                        <div class="aa-body">
+                          <div class="aa-item"><span class="aa-ico">✅</span>L'IA répond en moins de 3 secondes</div>
+                          <div class="aa-item"><span class="aa-ico">✅</span>Le prospect a quelqu'un au bout du fil immédiatement</div>
+                          <div class="aa-item"><span class="aa-ico">✅</span>RDV confirmé avant de raccrocher</div>
+                          <div class="aa-item"><span class="aa-ico">✅</span>Tu reçois un résumé complet de l'appel</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="sys-section">
+                    <div class="sys-section-label">Ce que ça change concrètement</div>
+                    <div class="change-grid">
+                      <div class="change-card">
+                        <span class="change-icon">🤖</span>
+                        <span class="change-val">&lt; 3 sec</span>
+                        <div class="change-label">délai de décrochage de l'IA après la première sonnerie</div>
+                      </div>
+                      <div class="change-card">
+                        <span class="change-icon">📅</span>
+                        <span class="change-val">RDV direct</span>
+                        <div class="change-label">le prospect raccroche avec un rendez-vous confirmé dans le calendrier</div>
+                      </div>
+                      <div class="change-card">
+                        <span class="change-icon">💰</span>
+                        <span class="change-val">0 lead perdu</span>
+                        <div class="change-label">chaque appel est capturé, qualifié et converti automatiquement</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="sys-section">
+                    <div class="sys-section-label">Comment l'IA s'adapte à chaque situation</div>
+                    <p class="sys-situation">Dur de s'imaginer si c'est réellement fiable et efficace. Mais l'IA est entraînée sur ton entreprise et s'adapte en temps réel selon la situation. Exemple :</p>
+                    <div class="option-block">
+                      <div class="option-label">Nouveau prospect</div>
+                      <p>L'IA comprend le besoin et propose directement un créneau dans ton calendrier. Le RDV est confirmé avant de raccrocher.</p>
+                    </div>
+                    <div class="option-block">
+                      <div class="option-label">Problème sur une intervention récente</div>
+                      <p>L'IA comprend la situation, récupère toutes les infos et te les envoie directement. Tu rappelles quand tu veux, avec tout le contexte.</p>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div><!-- end sys-section deux solutions -->
+
+        </div>
+      </div>
+    </div>
+
+    <!-- SYSTÈME 2 -->
+    <div class="system-card" id="sys2">
+      <div class="system-header" onclick="toggleSystem('sys2')">
+        <div class="system-num">02</div>
+        <div class="system-title-wrap">
+          <div class="system-title">Avis Google automatique avec filtre</div>
+          <div class="system-tagline">Seuls les bons avis finissent sur Google</div>
+        </div>
+        <div class="system-chevron">⌄</div>
+      </div>
+      <div class="system-body">
+        <div class="system-inner">
+
+          <!-- EN UNE PHRASE -->
+          <div class="sys-section">
+            <div class="sys-section-label">En une phrase</div>
+            <p class="sys-phrase">À la fin de chaque job, le système demande automatiquement un avis au client, <strong>et filtre les mauvais avant qu'ils arrivent sur Google.</strong></p>
+          </div>
+
+          <!-- SITUATION ACTUELLE -->
+          <div class="sys-section">
+            <div class="sys-section-label">Situation actuelle</div>
+            <p class="sys-situation">Tu sais que les avis Google sont importants, mais tu oublies souvent de demander. Notre système demande pour toi.</p>
+            <p class="sys-callout"><strong>+ d'avis Google = + de crédibilité = + de visibilité en ligne = + d'appels = + de contrats.</strong> C'est un effet boule de neige. Chaque mois ça grossit.</p>
+          </div>
+
+          <!-- COMMENT ÇA FONCTIONNE -->
+          <div class="sys-section">
+            <div class="sys-section-label">Comment ça fonctionne</div>
+            <div class="steps-flow">
+              <div class="step-card">
+                <div class="step-num">Étape 01</div>
+                <span class="step-icon">🔧</span>
+                <div class="step-title">Job terminé</div>
+                <p class="step-desc">Le job est fait. En deux clics tu marques le client comme terminé dans le système.</p>
+                <span class="step-arrow">›</span>
+              </div>
+              <div class="step-card">
+                <div class="step-num">Étape 02</div>
+                <span class="step-icon">💬</span>
+                <div class="step-title">Message automatique</div>
+                <p class="step-desc">Le client reçoit un SMS avec un lien direct pour te laisser un avis Google.</p>
+                <span class="step-arrow">›</span>
+              </div>
+              <div class="step-card">
+                <div class="step-num">Étape 03</div>
+                <span class="step-icon">🔍</span>
+                <div class="step-title">Filtre intelligent</div>
+                <p class="step-desc">Sur le lien, il indique combien d'étoiles il mettrait. 1 à 3 étoiles : l'avis reste privé, tu reçois une alerte. 4 à 5 étoiles : il est redirigé directement sur ta fiche Google.</p>
+                <span class="step-arrow">›</span>
+              </div>
+              <div class="step-card">
+                <div class="step-num">Étape 04</div>
+                <span class="step-icon">⭐</span>
+                <div class="step-title">Avis publié</div>
+                <p class="step-desc">En un clic de sa part, l'avis est publié. Tu reçois plus d'avis 5 étoiles, sans jamais avoir à le demander toi-même.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- DÉMO VIDÉO -->
+          <div class="sys-section">
+            <div class="sys-section-label">Démo · Voir le filtre en action</div>
+            <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 1px solid var(--border);">
+              <iframe src="https://fast.wistia.net/embed/iframe/34l1uptsg2" allowtransparency="true" frameborder="0" scrolling="no" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+            </div>
+          </div>
+
+          <!-- AVANT / APRÈS -->
+          <div class="sys-section">
+            <div class="sys-section-label">Avant / Après</div>
+            <div class="avant-apres">
+              <div class="aa-col avant">
+                <div class="aa-header"><span class="aa-dot"></span> Avant <span class="aa-sub">Sans le système</span></div>
+                <div class="aa-body">
+                  <div class="aa-item"><span class="aa-ico">❌</span>Client content, aucun avis laissé</div>
+                  <div class="aa-item"><span class="aa-ico">❌</span>Ta fiche Google stagne depuis des mois</div>
+                  <div class="aa-item"><span class="aa-ico">❌</span>Un concurrent avec plus d'avis te passe devant</div>
+                  <div class="aa-item"><span class="aa-ico">❌</span>Les nouveaux clients le trouvent en premier</div>
+                </div>
+              </div>
+              <div class="aa-col apres">
+                <div class="aa-header"><span class="aa-dot"></span> Après <span class="aa-sub">Avec le système</span></div>
+                <div class="aa-body">
+                  <div class="aa-item"><span class="aa-ico">✅</span>Chaque job satisfait génère une demande d'avis automatique</div>
+                  <div class="aa-item"><span class="aa-ico">✅</span>Les mauvais avis restent privés</div>
+                  <div class="aa-item"><span class="aa-ico">✅</span>Ta note monte, ton classement Maps remonte</div>
+                  <div class="aa-item"><span class="aa-ico">✅</span>Plus d'appels entrants sans budget pub supplémentaire</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CE QUE ÇA CHANGE -->
+          <div class="sys-section">
+            <div class="sys-section-label">Ce que ça change concrètement</div>
+            <div class="change-grid">
+              <div class="change-card">
+                <span class="change-icon">⭐</span>
+                <span class="change-val">+ avis</span>
+                <div class="change-label">chaque job devient une opportunité d'avis 5 étoiles automatiquement</div>
+              </div>
+              <div class="change-card">
+                <span class="change-icon">🛡️</span>
+                <span class="change-val">0 bad review</span>
+                <div class="change-label">les avis négatifs sont filtrés avant d'arriver sur Google</div>
+              </div>
+              <div class="change-card">
+                <span class="change-icon">📍</span>
+                <span class="change-val">+ visibilité</span>
+                <div class="change-label">meilleur classement sur Google Maps = plus d'appels entrants chaque mois</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- SYSTÈME 3 -->
+    <div class="system-card" id="sys3">
+      <div class="system-header" onclick="toggleSystem('sys3')">
+        <div class="system-num">03</div>
+        <div class="system-title-wrap">
+          <div class="system-title">Suivi post-job automatique</div>
+          <div class="system-tagline">Bouche-à-oreille sur pilote automatique</div>
+        </div>
+        <div class="system-chevron">⌄</div>
+      </div>
+      <div class="system-body">
+        <div class="system-inner">
+
+          <!-- EN UNE PHRASE -->
+          <div class="sys-section">
+            <div class="sys-section-label">En une phrase</div>
+            <p class="sys-phrase">Après chaque job, le client reçoit une séquence automatique qui entretient la relation, génère du bouche-à-oreille et <strong>te garde dans sa tête pour la prochaine fois.</strong></p>
+          </div>
+
+          <!-- SITUATION ACTUELLE -->
+          <div class="sys-section">
+            <div class="sys-section-label">Situation actuelle</div>
+            <p class="sys-situation">Le job est fini. T'as bien travaillé. Le client est content. Et là... plus rien. Zéro contact. Dans 6 mois, quand il aura besoin d'un entretien ou que son voisin cherche un contracteur, il aura oublié ton nom. Aucun concurrent reprend contact après un job. C'est là que t'as une longueur d'avance.</p>
+            <p class="sys-callout"><strong>Le client le plus facile à convertir, c'est celui qui t'a déjà fait confiance.</strong> Il suffit de rester présent.</p>
+          </div>
+
+          <!-- COMMENT ÇA FONCTIONNE -->
+          <div class="sys-section">
+            <div class="sys-section-label">Comment ça fonctionne</div>
+            <div class="steps-flow">
+              <div class="step-card">
+                <div class="step-num">Étape 01</div>
+                <span class="step-icon">🔧</span>
+                <div class="step-title">Job terminé</div>
+                <p class="step-desc">Le job est fait. En deux clics le client est ajouté dans la séquence automatique.</p>
+                <span class="step-arrow">›</span>
+              </div>
+              <div class="step-card">
+                <div class="step-num">Étape 02</div>
+                <span class="step-icon">💬</span>
+                <div class="step-title">Message de suivi</div>
+                <p class="step-desc">Quelques jours après, il reçoit un message pour s'assurer que tout se passe bien. Simple, humain, automatique.</p>
+                <span class="step-arrow">›</span>
+              </div>
+              <div class="step-card">
+                <div class="step-num">Étape 03</div>
+                <span class="step-icon">💬</span>
+                <div class="step-title">Entretien du lien</div>
+                <p class="step-desc">Toutes les quelques semaines, il reçoit un message court pour garder le lien vivant. Simple, naturel, pas intrusif.</p>
+                <span class="step-arrow">›</span>
+              </div>
+              <div class="step-card">
+                <div class="step-num">Étape 04</div>
+                <span class="step-icon">🎁</span>
+                <div class="step-title">Offres ciblées</div>
+                <p class="step-desc">De temps en temps, une offre personnalisée : "10% sur ton prochain entretien, valable aussi pour ton entourage." Des clients qui reviennent et qui référent.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- AVANT / APRÈS -->
+          <div class="sys-section">
+            <div class="sys-section-label">Avant / Après</div>
+            <div class="avant-apres">
+              <div class="aa-col avant">
+                <div class="aa-header"><span class="aa-dot"></span> Avant <span class="aa-sub">Sans le système</span></div>
+                <div class="aa-body">
+                  <div class="aa-item"><span class="aa-ico">❌</span>Job fini, plus aucun contact avec le client</div>
+                  <div class="aa-item"><span class="aa-ico">❌</span>Il oublie ton nom en quelques mois</div>
+                  <div class="aa-item"><span class="aa-ico">❌</span>Il retourne sur Google pour trouver quelqu'un</div>
+                </div>
+              </div>
+              <div class="aa-col apres">
+                <div class="aa-header"><span class="aa-dot"></span> Après <span class="aa-sub">Avec le système</span></div>
+                <div class="aa-body">
+                  <div class="aa-item"><span class="aa-ico">✅</span>Le client reçoit un suivi automatique après le job</div>
+                  <div class="aa-item"><span class="aa-ico">✅</span>Quand il a à nouveau besoin, il t'appelle toi</div>
+                  <div class="aa-item"><span class="aa-ico">✅</span>Bouche-à-oreille actif sans que t'aies rien à faire</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CE QUE ÇA CHANGE -->
+          <div class="sys-section">
+            <div class="sys-section-label">Ce que ça change concrètement</div>
+            <div class="change-grid">
+              <div class="change-card">
+                <span class="change-icon">🔁</span>
+                <span class="change-val">+ fidélité</span>
+                <div class="change-label">tes clients reviennent vers toi au lieu de chercher ailleurs</div>
+              </div>
+              <div class="change-card">
+                <span class="change-icon">🤝</span>
+                <span class="change-val">+ références</span>
+                <div class="change-label">chaque client satisfait devient une source de nouveaux prospects</div>
+              </div>
+              <div class="change-card">
+                <span class="change-icon">💰</span>
+                <span class="change-val">0 effort</span>
+                <div class="change-label">tout est automatique, tu touches à rien une fois que c'est en place</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- SYSTÈME 4 -->
+    <div class="system-card" id="sys4">
+      <div class="system-header" onclick="toggleSystem('sys4')">
+        <div class="system-num">04</div>
+        <div class="system-title-wrap">
+          <div class="system-title">Réactivation de ta base de contacts dormants</div>
+          <div class="system-tagline">Ta mine d'or la plus sous-estimée</div>
+        </div>
+        <div class="system-chevron">⌄</div>
+      </div>
+      <div class="system-body">
+        <div class="system-inner">
+
+          <!-- EN UNE PHRASE -->
+          <div class="sys-section">
+            <div class="sys-section-label">En une phrase</div>
+            <p class="sys-phrase">On relance automatiquement tous les contacts qui sont passés dans ton entreprise sans jamais convertir, <strong>sans budget pub, sans effort de ta part.</strong></p>
+          </div>
+
+          <!-- SITUATION ACTUELLE -->
+          <div class="sys-section">
+            <div class="sys-section-label">Situation actuelle</div>
+            <p class="sys-situation">T'as des dizaines, peut-être des centaines de contacts dans ton téléphone. Des gens qui ont demandé un prix, des anciens clients que t'as perdu de vue, des leads qui t'ont dit "je te rappelle" et que t'as jamais suivi. Ces gens sont une mine d'or. Si t'as pas encore de liste comme ça, elle se construira au fil du temps avec nous.</p>
+          </div>
+
+          <!-- COMMENT ÇA FONCTIONNE -->
+          <div class="sys-section">
+            <div class="sys-section-label">Comment ça fonctionne</div>
+            <div class="steps-flow">
+              <div class="step-card">
+                <div class="step-num">Étape 01</div>
+                <span class="step-icon">🗂️</span>
+                <div class="step-title">On importe ta base</div>
+                <p class="step-desc">Tu nous envoies ta liste de contacts, anciens clients, leads non convertis. On nettoie et on prépare la campagne.</p>
+                <span class="step-arrow">›</span>
+              </div>
+              <div class="step-card">
+                <div class="step-num">Étape 02</div>
+                <span class="step-icon">💬</span>
+                <div class="step-title">Message de relance</div>
+                <p class="step-desc">Des messages SMS et emails naturels partent à chaque contact. Pas agressif. Juste un rappel que t'existes et que t'es disponible.</p>
+                <span class="step-arrow">›</span>
+              </div>
+              <div class="step-card">
+                <div class="step-num">Étape 03</div>
+                <span class="step-icon">📋</span>
+                <div class="step-title">Réponses capturées</div>
+                <p class="step-desc">Ceux qui répondent sont qualifiés automatiquement. Tu reçois une notif avec le contexte complet.</p>
+                <span class="step-arrow">›</span>
+              </div>
+              <div class="step-card">
+                <div class="step-num">Étape 04</div>
+                <span class="step-icon">📅</span>
+                <div class="step-title">RDV ou rappel</div>
+                <p class="step-desc">Le contact intéressé prend un RDV directement ou tu le rappelles avec toutes ses infos en main.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- AVANT / APRÈS -->
+          <div class="sys-section">
+            <div class="sys-section-label">Avant / Après</div>
+            <div class="avant-apres">
+              <div class="aa-col avant">
+                <div class="aa-header"><span class="aa-dot"></span> Avant <span class="aa-sub">Sans le système</span></div>
+                <div class="aa-body">
+                  <div class="aa-item"><span class="aa-ico">❌</span>Des centaines de contacts qui dorment dans ton téléphone</div>
+                  <div class="aa-item"><span class="aa-ico">❌</span>Zéro relance, zéro suivi</div>
+                  <div class="aa-item"><span class="aa-ico">❌</span>Ces gens finissent par appeler un concurrent</div>
+                  <div class="aa-item"><span class="aa-ico">❌</span>Revenu potentiel qui dort sans rien te coûter</div>
+                </div>
+              </div>
+              <div class="aa-col apres">
+                <div class="aa-header"><span class="aa-dot"></span> Après <span class="aa-sub">Avec le système</span></div>
+                <div class="aa-body">
+                  <div class="aa-item"><span class="aa-ico">✅</span>Campagne de relance automatique sur toute ta base</div>
+                  <div class="aa-item"><span class="aa-ico">✅</span>Une partie de ces contacts redevient cliente</div>
+                  <div class="aa-item"><span class="aa-ico">✅</span>Des contrats récupérés sans un dollar de pub</div>
+                  <div class="aa-item"><span class="aa-ico">✅</span>Ta base de contacts travaille enfin pour toi</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CE QUE ÇA CHANGE -->
+          <div class="sys-section">
+            <div class="sys-section-label">Ce que ça change concrètement</div>
+            <div class="change-grid">
+              <div class="change-card">
+                <span class="change-icon">💤</span>
+                <span class="change-val">Réactivé</span>
+                <div class="change-label">des contacts dormants qui redeviennent clients sans aucun effort</div>
+              </div>
+              <div class="change-card">
+                <span class="change-icon">💰</span>
+                <span class="change-val">0$ de pub</span>
+                <div class="change-label">des contrats récupérés sans budget publicitaire supplémentaire</div>
+              </div>
+              <div class="change-card">
+                <span class="change-icon">📈</span>
+                <span class="change-val">5 à 20%</span>
+                <div class="change-label">de taux de réponse positif en moyenne sur une base de contacts dormants</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ MODÈLE -->
+<hr class="sep">
+<section class="section">
+  <div class="model-block">
+    <div class="section-label">Comment on travaille</div>
+    <h2>Tu paies par rendez-vous. Pas de fixe mensuel.</h2>
+    <p>
+      La plupart des agences te demandent d'investir des milliers de dollars, signer des contrats, et espérer que ça marche. On fait l'opposé.
+    </p>
+    <p>
+      On t'installe un système clé en main, rémunéré à la performance. Tu paies par rendez-vous qualifié qu'on t'apporte. On a tellement confiance en notre système qu'on performe ou on gagne rien.
+    </p>
+    <p>
+      On verra ensemble le prix par rendez-vous lors de notre appel, en fonction de ton secteur et de ton volume.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ CTA -->
+<section style="padding: 60px 24px 80px; max-width: 820px; margin: 0 auto;">
+  <div style="background: #111; border-radius: 24px; padding: 64px 48px; text-align: center; position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(241,90,36,0.25) 0%, transparent 70%); pointer-events: none;"></div>
+    <div style="position: relative; z-index: 1;">
+      <div style="font-size: 32px; margin-bottom: 16px;">👋</div>
+      <div style="font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #f15a24; margin-bottom: 16px;">À très vite</div>
+      <p style="font-size: 15px; color: rgba(255,255,255,0.55); max-width: 460px; margin: 0 auto 36px; line-height: 1.7;">Pendant notre appel, on ira dans les détails, on fera des démonstrations concrètes et on regardera ensemble ce qu'on peut mettre en place dans ton entreprise.</p>
+
+      <div style="border-top: 1px solid rgba(255,255,255,0.08); padding-top: 32px; text-align: left; max-width: 460px; margin: 0 auto;">
+        <div style="font-family: 'Montserrat', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 20px;">Pour qu'on soit le plus efficace possible, viens avec :</div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <span style="font-size: 18px; flex-shrink: 0;">📞</span>
+            <div>
+              <div style="font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 2px;">Ton nombre d'appels manqués par semaine</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.5;">Même une estimation suffit.</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <span style="font-size: 18px; flex-shrink: 0;">💰</span>
+            <div>
+              <div style="font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 2px;">Ton panier moyen par job</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.5;">La valeur moyenne d'un contrat chez toi.</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <span style="font-size: 18px; flex-shrink: 0;">📋</span>
+            <div>
+              <div style="font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 2px;">Lis les 4 systèmes plus haut</div>
+              <div style="font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.5;">Plus tu comprends ce qu'on fait, plus on peut adapter et personnaliser à ton activité.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ FOOTER -->
+<footer>
+  <span class="logo">Lak<span>.</span></span>
+  Systèmes d'automatisation pour contracteurs spécialisés · Québec
+</footer>
+
+<script>
+  function scrollToEl(el) {
+    const offset = 80;
+    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
+  }
+
+  function toggleSub(id) {
+    const acc = document.getElementById(id);
+    const body = acc.querySelector('.sub-body');
+    const isOpen = acc.classList.contains('open');
+
+    // Close any open sibling
+    acc.parentElement.querySelectorAll('.sub-accordion').forEach(s => {
+      s.classList.remove('open');
+      s.querySelector('.sub-body').style.maxHeight = '0';
+    });
+
+    if (!isOpen) {
+      acc.classList.add('open');
+      body.style.maxHeight = body.scrollHeight + 2000 + 'px';
+      const parentBody = acc.closest('.system-body');
+      if (parentBody) parentBody.style.maxHeight = 'none';
+      // Wait for collapse animation + open, then scroll
+      setTimeout(() => scrollToEl(acc), 450);
+    }
+  }
+
+  function toggleSystem(id) {
+    const card = document.getElementById(id);
+    const body = card.querySelector('.system-body');
+    const isOpen = card.classList.contains('open');
+
+    document.querySelectorAll('.system-card').forEach(c => {
+      c.classList.remove('open');
+      c.querySelector('.system-body').style.maxHeight = '0';
+      c.querySelectorAll('.sub-accordion').forEach(s => {
+        s.classList.remove('open');
+        s.querySelector('.sub-body').style.maxHeight = '0';
+      });
+    });
+
+    if (!isOpen) {
+      card.classList.add('open');
+      body.style.maxHeight = 'none';
+      setTimeout(() => scrollToEl(card), 50);
+    }
+  }
+
+  function fmt(n) {
+    if (n >= 1000) return '$' + Math.round(n).toLocaleString('fr-CA');
+    return '$' + Math.round(n).toLocaleString('fr-CA');
+  }
+
+  function calculateLoss() {
+    const missedRaw = document.getElementById('missedCalls').value;
+    const jobValRaw = document.getElementById('jobValue').value;
+    const convRaw = document.getElementById('convRate').value;
+
+    if (!missedRaw || !jobValRaw || !convRaw) {
+      document.querySelectorAll('.calc-field input').forEach(input => {
+        if (!input.value) {
+          input.style.borderColor = '#f15a24';
+          input.style.boxShadow = '0 0 0 3px rgba(241,90,36,0.15)';
+        }
+      });
+      return;
+    }
+
+    const missed = parseFloat(missedRaw);
+    const jobVal = parseFloat(jobValRaw);
+    const conv = parseFloat(convRaw) / 100;
+
+    const leadsPerMonth = Math.round(missed * 4.33);
+    const missedRevenue = leadsPerMonth * conv * jobVal;
+    const missedRevenueAnnual = missedRevenue * 12;
+
+    document.getElementById('rLeads').textContent = leadsPerMonth;
+    document.getElementById('rMissed').textContent = fmt(missedRevenue);
+    document.getElementById('rAnnual').textContent = fmt(missedRevenueAnnual);
+
+    const result = document.getElementById('calcResult');
+    result.classList.add('show');
+    result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  document.querySelectorAll('.calc-field input').forEach(input => {
+    input.addEventListener('input', () => {
+      input.style.borderColor = '';
+      input.style.boxShadow = '';
+    });
+  });
+</script>
+</body>
+</html>
